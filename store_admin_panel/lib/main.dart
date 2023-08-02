@@ -4,7 +4,7 @@ import 'package:store_admin_panel/controllers/mycontroller.dart';
 import 'package:store_admin_panel/pages/overview/overview.dart';
 import 'package:store_admin_panel/constants/controllers.dart';
 
-import 'themes/mythemedata.dart';
+import 'themes/my_themedata.dart';
 
 void main() {
   Get.put(MyContorller());

@@ -1,8 +1,10 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/cupertino.dart';
 
 class BreakPoints {
   static const double smallBreakPoint = 550;
-  static const double mediumBreakPoint = 1120;
+  static const double mediumBreakPoint = 950;
 }
 
 class ResponsiveDirector extends StatelessWidget {

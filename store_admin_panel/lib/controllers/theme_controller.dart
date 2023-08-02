@@ -1,6 +1,8 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store_admin_panel/themes/mythemedata.dart';
+
 
 class ThemeModel {
   ThemeMode themeMode = ThemeMode.light;
