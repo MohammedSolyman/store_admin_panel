@@ -6,8 +6,9 @@ class ThemeModel {
   ThemeMode themeMode = ThemeMode.light;
 
   bool themeModeBool = true;
-  bool isVisibleTile = false;
+  
 }
+
 
 class ThemeController extends GetxController {
   Rx<ThemeModel> themeModel = ThemeModel().obs;
@@ -25,9 +26,6 @@ class ThemeController extends GetxController {
     });
   }
 
-  void toggleVisibility(bool x) {
-    themeModel.update((val) {
-      val!.isVisibleTile = x;
-    });
-  }
+  
 }
+

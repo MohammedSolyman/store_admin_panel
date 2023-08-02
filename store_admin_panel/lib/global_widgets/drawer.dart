@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_admin_panel/constants/controllers.dart';
-import 'package:store_admin_panel/controllers/themecontroller.dart';
+import 'package:store_admin_panel/controllers/theme_controller.dart';
 import 'package:store_admin_panel/themes/mythemedata.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -17,9 +17,9 @@ class MyDrawer extends StatelessWidget {
             children: [
               MyLogo(),
               Divider(),
-              MyTile('overview', Icons.home),
-              MyTile('all products', Icons.store),
-              MyTile('all orders', Icons.shopping_bag),
+              MyTile('overview', Icons.home ),
+              MyTile('all products', Icons.store ),
+              MyTile('all orders', Icons.shopping_bag ),
               MyTheme(),
             ],
           ),
@@ -36,18 +36,18 @@ class MyTheme extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       return Container(
-        padding: EdgeInsets.all(3),
+        padding: const EdgeInsets.all(3),
         child: Row(
           children: [
-            SizedBox(width: 20),
-            Icon(Icons.light_mode),
-            SizedBox(width: 10),
-            Text('brightness', style: TextStyle(fontSize: 20)),
-            SizedBox(width: 10),
+            const SizedBox(width: 20),
+            const Icon(Icons.light_mode),
+            const SizedBox(width: 10),
+            const Text('brightness', style: TextStyle(fontSize: 20)),
+            const SizedBox(width: 10),
             Switch(
-                value: themeController.themeModel.value.themeModeBool,
+                value: myController.themeModel.value.themeModeBool,
                 onChanged: (x) {
-                  themeController.toggleMode(x);
+                  myController.toggleMode(x);
                 })
           ],
         ),
@@ -57,38 +57,44 @@ class MyTheme extends StatelessWidget {
 }
 
 class MyTile extends StatelessWidget {
-  const MyTile(this.txt, this.myIcon, {super.key});
+  const MyTile(this.txt, this.myIcon,  {super.key});
 
   final String txt;
   final IconData myIcon;
+ 
 
   @override
   Widget build(BuildContext context) {
-    ThemeController c = Get.find<ThemeController>();
-
     return Obx(() {
       return InkWell(
         onHover: (x) {
-          print('hhhhhhhhhooooooooooooovvvvvvvveeeeeeeeeerrrrrrr');
-          c.toggleVisibility(x);
+          myController.toggleHovering(x,txt);
         },
+        onTap: () {},
         child: Container(
-          padding: EdgeInsets.all(3),
-          color: Colors.transparent,
+          decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              boxShadow: myController.isHovering(txt)
+                  ? [const BoxShadow(color: Colors.black, blurRadius: 10)]
+                  : []),
+          padding: const EdgeInsets.all(3),
           child: Row(
             children: [
-              SizedBox(width: 5),
+              const SizedBox(width: 5),
               Visibility(
-                visible: c.themeModel.value.isVisibleTile,
+                visible: myController.isHovering(txt),
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
                 child: Container(
                   height: 30,
                   width: 5,
                   color: Colors.red,
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Icon(myIcon),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Text(
                 txt,
                 style: Theme.of(context).textTheme.bodyLarge,

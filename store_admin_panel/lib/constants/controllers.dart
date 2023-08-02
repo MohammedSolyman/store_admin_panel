@@ -1,5 +1,5 @@
 
 
-import 'package:store_admin_panel/controllers/themecontroller.dart';
+import 'package:store_admin_panel/controllers/mycontroller.dart';
 
-ThemeController themeController = ThemeController.ThemeInstance ;
+MyContorller myController = MyContorller.instance ;
