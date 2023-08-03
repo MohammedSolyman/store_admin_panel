@@ -3,8 +3,8 @@ import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/global_widgets/product_template/product_template.dart';
 import 'package:store_admin_panel/global_widgets/purchase_template/purchase_template.dart';
 
-class MediumOverviewBody extends StatelessWidget {
-  const MediumOverviewBody({super.key});
+class SmallOverviewBody extends StatelessWidget {
+  const SmallOverviewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class MediumOverviewBody extends StatelessWidget {
           MySizedBox(),
           MyTitle('latest products'),
           MySizedBox(),
-          LatestProduct(4),
+          LatestProduct(2),
           MySizedBox(),
           MyTitle('latest orders'),
           MySizedBox(),

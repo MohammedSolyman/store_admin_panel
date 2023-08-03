@@ -9,7 +9,7 @@ class LargeOverview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body:  Center(
+      body:  const Center(
         child: Row(
           children: [
             MyDrawer(),

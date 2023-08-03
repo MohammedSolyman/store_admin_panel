@@ -9,11 +9,11 @@ class LargeOverviewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        flex: 4,
         child: Container(
           padding: const EdgeInsets.all(7),
           color: Theme.of(context).primaryColor,
           child: const Column(
+          
             children: [
               TitleAndSearch(),
               MySizedBox(),
@@ -21,7 +21,7 @@ class LargeOverviewBody extends StatelessWidget {
               MySizedBox(),
               MyTitle('latest products'),
               MySizedBox(),
-              LatestProduct(),
+              LatestProduct(4),
               MySizedBox(),
               MyTitle('latest orders'),
               MySizedBox(),

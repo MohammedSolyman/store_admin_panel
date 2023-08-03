@@ -10,9 +10,9 @@ class MediumOverview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: globalKey,
-      drawer: Container(width: 200,child: MyDrawer(),),
+      drawer: const SizedBox(width: 200,child: MyDrawer(),),
       backgroundColor: Theme.of(context).primaryColor,
-      body: Center(child: MediumOverviewBody()),
+      body: const Center(child: MediumOverviewBody()),
     );
   }
 }

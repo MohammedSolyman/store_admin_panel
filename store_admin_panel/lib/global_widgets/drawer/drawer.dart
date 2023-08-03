@@ -44,7 +44,7 @@ class MyTheme extends StatelessWidget {
           const SizedBox(width: 5),
           Text('brightness', style: Theme.of(context).textTheme.bodyLarge),
           const SizedBox(width: 5),
-          Container(
+          SizedBox(
             width: 50,
             child: Switch(
                 value: myController.themeModel.value.themeModeBool,
@@ -116,6 +116,6 @@ class MyLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(width: 150, height: 150, child: Image.asset('store.png'));
+    return SizedBox(width: 150, height: 150, child: Image.asset('store.png'));
   }
 }
