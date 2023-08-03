@@ -1,13 +1,17 @@
 import 'package:get/get.dart';
+import 'package:store_admin_panel/controllers/navigation_controller.dart';
 import 'package:store_admin_panel/controllers/pages_controller.dart';
 
 /*
 MyController extend:
     ThemeController
     VisibilityContorller
+    PagesController
+    AddProductController
+    EditProductController
+    NavigationController
 */
 
-class MyContorller extends PagesController {
-  static MyContorller instance = Get.find(); 
-  
+class MyContorller extends NavigationController {
+  static MyContorller instance = Get.find();
 }

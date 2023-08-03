@@ -1,10 +1,8 @@
 import 'package:get/get.dart';
-import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/controllers/visibility_controller.dart';
+import 'package:store_admin_panel/models/page_model.dart';
 
-class PagesModel {
-  String pageName = PagesNames.overview;
-}
+
 
 class PagesController extends VisibilityContorller {
   Rx<PagesModel> pagesModel = PagesModel().obs;

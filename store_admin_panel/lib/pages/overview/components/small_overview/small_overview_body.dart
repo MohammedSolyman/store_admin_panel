@@ -59,7 +59,10 @@ class TwoButtoms extends StatelessWidget {
               children: [Icon(Icons.store), Text('view all')],
             )),
         ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+                            myController.toAddProduct();
+
+            },
             child: const Row(
               children: [Icon(Icons.add), Text('add product')],
             )),

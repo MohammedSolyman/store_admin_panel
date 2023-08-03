@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_admin_panel/constants/constants.dart';
+import 'package:store_admin_panel/global_widgets/my_text.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -14,7 +15,7 @@ class MyDrawer extends StatelessWidget {
             BoxShadow(color: Colors.black, blurRadius: 10)
           ]),
 
-      child: const Column(
+      child:  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyLogo(),
@@ -42,7 +43,7 @@ class MyTheme extends StatelessWidget {
           const SizedBox(width: 20),
           const Icon(Icons.light_mode),
           const SizedBox(width: 5),
-          Text('brightness', style: Theme.of(context).textTheme.bodyLarge),
+          MyText('brightness'),
           const SizedBox(width: 5),
           SizedBox(
             width: 50,
@@ -57,6 +58,11 @@ class MyTheme extends StatelessWidget {
     });
   }
 }
+
+
+
+
+
 
 class MyTile extends StatelessWidget {
   const MyTile(this.txt, this.myIcon, {super.key});
@@ -97,10 +103,7 @@ class MyTile extends StatelessWidget {
               const SizedBox(width: 5),
               Icon(myIcon),
               const SizedBox(width: 5),
-              Text(
-                txt,
-                style: Theme.of(context).textTheme.bodyLarge,
-              )
+              MyText(txt)
             ],
           ),
         ),

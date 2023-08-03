@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_admin_panel/constants/constants.dart';
+import 'package:store_admin_panel/global_widgets/my_title.dart';
 import 'package:store_admin_panel/global_widgets/product_template/product_template.dart';
 import 'package:store_admin_panel/global_widgets/purchase_template/purchase_template.dart';
 
@@ -32,18 +33,7 @@ class LargeOverviewBody extends StatelessWidget {
   }
 }
 
-class MyTitle extends StatelessWidget {
-  const MyTitle(
-    this.txt, {
-    super.key,
-  });
 
-  final String txt;
-  @override
-  Widget build(BuildContext context) {
-    return Text(txt, style: Theme.of(context).textTheme.headlineLarge);
-  }
-}
 
 class TwoButtoms extends StatelessWidget {
   const TwoButtoms({
@@ -61,7 +51,9 @@ class TwoButtoms extends StatelessWidget {
               children: [Icon(Icons.store), Text('view all')],
             )),
         ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              myController.toAddProduct();
+            },
             child: const Row(
               children: [Icon(Icons.add), Text('add product')],
             )),

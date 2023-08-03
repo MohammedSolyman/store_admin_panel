@@ -4,6 +4,7 @@ import 'package:store_admin_panel/controllers/mycontroller.dart';
 import 'package:store_admin_panel/pages/overview/overview.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 
+import 'pages/add_product/add_product.dart';
 import 'themes/my_themedata.dart';
 
 void main() {
@@ -22,9 +23,11 @@ class MainApp extends StatelessWidget {
           themeMode: myController.themeModel.value.themeMode,
           theme: MyThemeData.light,
           darkTheme: MyThemeData.dark,
-          initialRoute: '/',
+          initialRoute: '/addproduct',
           getPages: [
-            GetPage(name: '/', page: () => const Overview()),
+            GetPage(name: '/overview', page: () => const Overview()),
+          GetPage(name: '/addproduct', page: () => const AddProduct()),
+            
 // GetPage(name: '/', page: ()=> Products()),
 // GetPage(name: '/', page: ()=> EditProduct()),
 // GetPage(name: '/', page: ()=> Orders()),

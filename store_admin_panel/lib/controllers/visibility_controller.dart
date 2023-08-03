@@ -1,13 +1,9 @@
 import 'package:get/get.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/controllers/theme_controller.dart';
+import 'package:store_admin_panel/models/visibility_model.dart';
 
 
-class VisibilityModel {
-  bool isHoveringOverview = false;
-  bool isHoveringProducts = false;
-  bool isHoveringOrders = false;
-}
 
 class VisibilityContorller extends ThemeController {
   Rx<VisibilityModel> visibilityModel = VisibilityModel().obs;

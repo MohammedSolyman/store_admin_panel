@@ -22,3 +22,28 @@ class PagesNames {
 
 //GlobalKey
 GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
+
+
+
+class Unit {
+  static const String kilo = "kilo";
+  static const String piece = "piece";
+}
+
+class Category {
+  static const String grains = "grains";
+  static const String fruits = "fruits";
+  static const String vegetables = "vegetables";
+  static const String dairy = "dairy";
+
+
+
+  static const List<String> categoryList = [
+    Category.dairy,
+    Category.fruits,
+    Category.dairy,
+    Category.grains
+  ];
+}
+
+

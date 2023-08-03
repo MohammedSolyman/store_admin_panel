@@ -1,0 +1,228 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:store_admin_panel/constants/constants.dart';
+import 'package:store_admin_panel/global_widgets/my_button/my_button.dart';
+import 'package:store_admin_panel/global_widgets/my_text.dart';
+import 'package:dotted_border/dotted_border.dart';
+class MiddleBlock extends StatelessWidget {
+  const MiddleBlock({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+        flex: 3,
+        child: Container(
+          decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+          child: Row(
+            children: [FirstBlock(), ImageBlock(), ThirdBlock()],
+          ),
+        ));
+  }
+}
+
+class ThirdBlock extends StatelessWidget {
+  const ThirdBlock({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        MyButton(Icons.delete, 'clear image'),
+        SizedBox(
+          height: 15,
+        ),
+        MyButton(Icons.upload, 'upload image')
+      ],
+    );
+  }
+}
+
+class FirstBlock extends StatelessWidget {
+  const FirstBlock({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ProductPriceBlock(),
+          ProductCategoryBlock(),
+          ProductMeasureUnit(),
+          OnSaleBlock()
+        ],
+      ),
+    );
+  }
+}
+
+class ImageBlock extends StatelessWidget {
+  const ImageBlock({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 2,
+      child: Container(
+        width: 250,
+        height: 250,
+        decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+        child: DottedBorder(
+          color: Theme.of(context).textTheme.bodyLarge!.color!,
+          borderPadding: EdgeInsets.all(8),
+          borderType: BorderType.RRect,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Icon(Icons.image),
+              SizedBox(height: 10,),
+               TextButton(onPressed: (){}, child: MyText('choose image'))],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class OnSaleBlock extends StatelessWidget {
+  const OnSaleBlock({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Checkbox(
+              value: myController.addProductModel.value.checkBoxValue,
+              onChanged: (bool? b) {
+                myController.changeCheckBoxValue(b!);
+              }),
+          MyText('on sale'),
+        ],
+      );
+    });
+  }
+}
+
+
+
+class ProductMeasureUnit extends StatelessWidget {
+  const ProductMeasureUnit({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        MyText('measre units'),
+        Obx(() {
+          return Row(
+            children: [
+              MyText('kg'),
+              Radio(
+                  value: Unit.kilo,
+                  groupValue: myController.addProductModel.value.groupValue,
+                  onChanged: (String? s) {
+                    myController.changeGroupValue(s!);
+                  }),
+              MyText('piece'),
+              Radio(
+                  value: Unit.piece,
+                  groupValue: myController.addProductModel.value.groupValue,
+                  onChanged: (String? s) {
+                    myController.changeGroupValue(s!);
+                  }),
+              SizedBox(
+                height: 10,
+              )
+            ],
+          );
+        })
+      ],
+    );
+  }
+}
+
+
+class ProductCategoryBlock extends StatelessWidget {
+  const ProductCategoryBlock({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        MyText('product category'),
+        SizedBox(
+          height: 5,
+        ),
+        DropdownMenu(
+            inputDecorationTheme: InputDecorationTheme(
+                fillColor: Theme.of(context).primaryColor,
+                filled: true,
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10))),
+            dropdownMenuEntries:
+                List.generate(Category.categoryList.length, (index) {
+              return DropdownMenuEntry(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(
+                          Theme.of(context).primaryColor)),
+                  value: Category.categoryList[index],
+                  label: Category.categoryList[index]);
+            })),
+        SizedBox(
+          height: 10,
+        ),
+      ],
+    );
+  }
+}
+
+
+
+
+
+class ProductPriceBlock extends StatelessWidget {
+  const ProductPriceBlock({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        MyText('price in \$ *'),
+        SizedBox(
+          height: 5,
+        ),
+        SizedBox(
+          height: 40,
+          child: TextFormField(
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Theme.of(context).primaryColor,
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10))),
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+      ],
+    );
+  }
+}

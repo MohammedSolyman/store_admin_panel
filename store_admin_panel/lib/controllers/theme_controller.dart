@@ -2,14 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store_admin_panel/models/theme_model.dart';
 
 
-class ThemeModel {
-  ThemeMode themeMode = ThemeMode.light;
 
-  bool themeModeBool = true;
-  
-}
 
 
 class ThemeController extends GetxController {
