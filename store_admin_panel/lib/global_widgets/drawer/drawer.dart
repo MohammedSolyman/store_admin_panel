@@ -1,8 +1,6 @@
-// ignore_for_file: sized_box_for_whitespace
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store_admin_panel/constants/controllers.dart';
+import 'package:store_admin_panel/constants/constants.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -12,20 +10,21 @@ class MyDrawer extends StatelessWidget {
     return Expanded(
         flex: 1,
         child: Container(
-     //     elevation: 5,
+          //     elevation: 5,
           decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColor,
-
-            boxShadow:[BoxShadow(color: Colors.black,blurRadius: 10)]),
+              color: Theme.of(context).primaryColor,
+              boxShadow: const [
+                BoxShadow(color: Colors.black, blurRadius: 10)
+              ]),
 
           child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MyLogo(),
               Divider(),
-              MyTile('overview', Icons.home),
-              MyTile('all products', Icons.store),
-              MyTile('all orders', Icons.shopping_bag),
+              MyTile(PagesNames.overview, Icons.home),
+              MyTile(PagesNames.allProducts, Icons.store),
+              MyTile(PagesNames.allOrders, Icons.shopping_bag),
               MyTheme(),
             ],
           ),
@@ -41,24 +40,22 @@ class MyTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return Container(
-        child: Row(
-          children: [
-            const SizedBox(width: 20),
-            const Icon(Icons.light_mode),
-            const SizedBox(width: 5),
-            Text('brightness', style: Theme.of(context).textTheme.bodyLarge),
-            const SizedBox(width: 5),
-            Container(
-              width: 50,
-              child: Switch(
-                  value: myController.themeModel.value.themeModeBool,
-                  onChanged: (x) {
-                    myController.toggleMode(x);
-                  }),
-            )
-          ],
-        ),
+      return Row(
+        children: [
+          const SizedBox(width: 20),
+          const Icon(Icons.light_mode),
+          const SizedBox(width: 5),
+          Text('brightness', style: Theme.of(context).textTheme.bodyLarge),
+          const SizedBox(width: 5),
+          Container(
+            width: 50,
+            child: Switch(
+                value: myController.themeModel.value.themeModeBool,
+                onChanged: (x) {
+                  myController.toggleMode(x);
+                }),
+          )
+        ],
       );
     });
   }
@@ -79,7 +76,7 @@ class MyTile extends StatelessWidget {
         },
         onTap: () {},
         child: Container(
-          margin: EdgeInsets.all(5),
+          margin: const EdgeInsets.all(5),
           decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
               boxShadow: myController.isHovering(txt)

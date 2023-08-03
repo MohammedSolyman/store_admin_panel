@@ -1,8 +1,13 @@
 import 'package:get/get.dart';
-import 'package:store_admin_panel/controllers/visibility_controller.dart';
+import 'package:store_admin_panel/controllers/pages_controller.dart';
 
+/*
+MyController extend:
+    ThemeController
+    VisibilityContorller
+*/
 
-class MyContorller extends VisibilityContorller {
+class MyContorller extends PagesController {
   static MyContorller instance = Get.find(); 
   
 }

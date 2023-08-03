@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/controllers/theme_controller.dart';
 
 
@@ -13,9 +14,9 @@ class VisibilityContorller extends ThemeController {
 
   void toggleHovering(bool x, String s) {
     visibilityModel.update((val) {
-      if (s == 'overview') {
+      if (s ==  PagesNames.overview   ) {
         val!.isHoveringOverview = x;
-      } else if (s == 'all products') {
+      } else if (s == PagesNames.allProducts) {
         val!.isHoveringProducts = x;
       } else {
         val!.isHoveringOrders = x;

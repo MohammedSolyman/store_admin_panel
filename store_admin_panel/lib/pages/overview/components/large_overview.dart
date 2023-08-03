@@ -7,16 +7,13 @@ class LargeOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-     
-      child: const Center(
-        child: Row(
-          children: [
-            MyDrawer(),
-            SizedBox(width: 15),
-            LargeOverviewBody()
-          ],
-        ),
+    return const Center(
+      child: Row(
+        children: [
+          MyDrawer(),
+          SizedBox(width: 15),
+          LargeOverviewBody()
+        ],
       ),
     );
   }

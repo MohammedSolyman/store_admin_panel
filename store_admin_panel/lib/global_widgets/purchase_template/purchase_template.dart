@@ -5,29 +5,27 @@ class PurchaseTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          Container(
-            height: 100,
-            width: 75,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 3),
-                image: DecorationImage(image: AssetImage('store.png'))),
-          )
-    , SizedBox(width: 20,)
-      , Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+    return Row(
+      children: [
+        Container(
+          height: 100,
+          width: 75,
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.black, width: 3),
+              image: const DecorationImage(image: AssetImage('store.png'))),
+        )
+    , const SizedBox(width: 20,)
+    , Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
 
 Text('2 kilos for 5 \$',style: Theme.of(context).textTheme.bodyLarge),
 Text('By Faers',        style: Theme.of(context).textTheme.bodyLarge),
 Text('date: 10-02-2023',style: Theme.of(context).textTheme.bodyLarge),
 
-       ],)
-       
-        ],
-      ),
+     ],)
+     
+      ],
     );
   }
 }
@@ -40,10 +38,10 @@ class LatestPurchases extends StatelessWidget {
     return Expanded(
       child: ListView.separated(
           itemBuilder: (context, index) {
-            return PurchaseTemplate();
+            return const PurchaseTemplate();
           },
           separatorBuilder: (context, index) {
-            return Divider();
+            return const Divider();
           },
           itemCount: 5),
     );

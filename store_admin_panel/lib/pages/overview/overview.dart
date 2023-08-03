@@ -11,7 +11,7 @@ class Overview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: ResponsiveDirector(
+      body: const ResponsiveDirector(
           smallWidget: SmallOverview(),
           mediumWidget: MediumOverview(),
           largeWidget: LargeOverview()),

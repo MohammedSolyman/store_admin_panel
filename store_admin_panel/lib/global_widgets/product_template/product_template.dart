@@ -21,7 +21,7 @@ class ProductTemplate extends StatelessWidget {
                 Container(
                   height: 125,
                   width: 100,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       image: DecorationImage(image: AssetImage('store.png'))),
                 ),
                 Row(
@@ -32,7 +32,7 @@ class ProductTemplate extends StatelessWidget {
                   ],
                 ),
                 Text('product name',style: Theme.of(context).textTheme.bodyLarge),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 )
               ],
@@ -41,14 +41,14 @@ class ProductTemplate extends StatelessWidget {
                 width: width,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(colors: [
-                    Color.fromARGB(255, 249, 249, 248).withOpacity(0.2),
-                    Color.fromARGB(255, 242, 132, 132).withOpacity(0.2),
-                    Color.fromARGB(255, 162, 147, 238).withOpacity(0.2),
+                    const Color.fromARGB(255, 249, 249, 248).withOpacity(0.2),
+                    const Color.fromARGB(255, 242, 132, 132).withOpacity(0.2),
+                    const Color.fromARGB(255, 162, 147, 238).withOpacity(0.2),
                   ]),
                   borderRadius: BorderRadius.circular(15),
                   // border: Border.all(color: Colors.black, width: 2)),
                 )),
-            Positioned(right: 5, top: 5, child: Icon(Icons.more_vert)),
+            const Positioned(right: 5, top: 5, child: Icon(Icons.more_vert)),
           ],
         ),
       ),

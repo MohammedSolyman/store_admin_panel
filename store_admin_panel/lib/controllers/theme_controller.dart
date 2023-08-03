@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +14,7 @@ class ThemeModel {
 
 class ThemeController extends GetxController {
   Rx<ThemeModel> themeModel = ThemeModel().obs;
-  static ThemeController ThemeInstance = Get.find<ThemeController>();
+  static ThemeController themeInstance = Get.find<ThemeController>();
 
   void toggleMode(bool x) {
     themeModel.update((val) {
