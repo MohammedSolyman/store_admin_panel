@@ -27,11 +27,11 @@ class ProductTemplate extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('product price',style: Theme.of(context).textTheme.bodyLarge,),
-                    Text('product unit',style: Theme.of(context).textTheme.bodyLarge),
+                    Text('\$ 15',style: Theme.of(context).textTheme.bodyLarge,),
+                    Text('kilo',style: Theme.of(context).textTheme.bodyLarge),
                   ],
                 ),
-                Text('product name',style: Theme.of(context).textTheme.bodyLarge),
+                Text('banana',style: Theme.of(context).textTheme.bodyLarge),
                 const SizedBox(
                   height: 50,
                 )

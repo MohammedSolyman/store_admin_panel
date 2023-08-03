@@ -1,5 +1,6 @@
 
 
+import 'package:flutter/material.dart';
 import 'package:store_admin_panel/controllers/mycontroller.dart';
 
 
@@ -16,3 +17,8 @@ class PagesNames {
   static const String  allOrders = 'all orders';
    
 }
+
+
+
+//GlobalKey
+GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();

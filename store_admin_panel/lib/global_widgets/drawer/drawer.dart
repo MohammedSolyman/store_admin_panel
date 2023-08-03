@@ -7,28 +7,25 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        flex: 1,
-        child: Container(
-          //     elevation: 5,
-          decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              boxShadow: const [
-                BoxShadow(color: Colors.black, blurRadius: 10)
-              ]),
+    return Container(
+      decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor,
+          boxShadow: const [
+            BoxShadow(color: Colors.black, blurRadius: 10)
+          ]),
 
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MyLogo(),
-              Divider(),
-              MyTile(PagesNames.overview, Icons.home),
-              MyTile(PagesNames.allProducts, Icons.store),
-              MyTile(PagesNames.allOrders, Icons.shopping_bag),
-              MyTheme(),
-            ],
-          ),
-        ));
+      child: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          MyLogo(),
+          Divider(),
+          MyTile(PagesNames.overview, Icons.home),
+          MyTile(PagesNames.allProducts, Icons.store),
+          MyTile(PagesNames.allOrders, Icons.shopping_bag),
+          MyTheme(),
+        ],
+      ),
+    );
   }
 }
 
