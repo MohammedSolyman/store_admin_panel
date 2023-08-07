@@ -20,6 +20,23 @@ class PagesNames {
 
 
 
+
+
+class PagesPaths {
+  static const String  overview = '/overview';
+  static const String  allProducts = '/allproducts';
+  static const String  allOrders = '/allorders';
+  static const String  addProduct = '/addproduct';
+  static const String  editProduct = 'editproduct';
+   
+}
+
+
+
+
+
+
+
 //GlobalKey
 GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
 

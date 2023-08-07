@@ -13,17 +13,17 @@ class MyDrawer extends StatelessWidget {
       decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
           boxShadow: const [BoxShadow(color: Colors.black, blurRadius: 10)]),
-      child: const SingleChildScrollView(
+      child:  SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
-            MyLogo(),
-            Divider(),
-            MyTile(PagesNames.overview, Icons.home),
-            MyTile(PagesNames.allProducts, Icons.store),
-            MyTile(PagesNames.allOrders, Icons.shopping_bag),
-            MyThemeTile(),
+            const MyLogo(),
+            const Divider(),
+            MyTile(PagesNames.overview, Icons.home, myController.toOverview  ),
+            MyTile(PagesNames.allProducts, Icons.store, myController.toAllProducts ),
+            MyTile(PagesNames.allOrders, Icons.shopping_bag, myController.toAllOrders   ),
+            const MyThemeTile(),
           ],
         ),
       ),
@@ -61,10 +61,11 @@ class MyThemeTile extends StatelessWidget {
 }
 
 class MyTile extends StatelessWidget {
-  const MyTile(this.txt, this.myIcon, {super.key});
+  const MyTile(this.txt, this.myIcon,this.function, {super.key});
 
   final String txt;
   final IconData myIcon;
+  final Function(BuildContext) function;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,7 @@ class MyTile extends StatelessWidget {
         onHover: (x) {
           myController.toggleHovering(x, txt);
         },
-        onTap: () {},
+        onTap: () {function(context);},
         child: Container(
           width: 200,
           margin: const EdgeInsets.all(5),

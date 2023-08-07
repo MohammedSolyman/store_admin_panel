@@ -68,20 +68,18 @@ class LatestProduct extends StatelessWidget {
   final int count;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.builder(
-        shrinkWrap: true,
-          itemCount: 4,
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: count,
-                crossAxisSpacing: 8.0 ,
-                mainAxisSpacing: 5.0,
-                  mainAxisExtent: 175,
-                ),
-          itemBuilder: (BuildContext context, int index) {
-            return ProductTemplate();
-          }),
-    );
+    return GridView.builder(
+      shrinkWrap: true,
+        itemCount: 4,
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: count,
+              crossAxisSpacing: 8.0 ,
+              mainAxisSpacing: 5.0,
+                mainAxisExtent: 175,
+              ),
+        itemBuilder: (BuildContext context, int index) {
+          return ProductTemplate();
+        });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/global_widgets/product_template/product_template.dart';
 import 'package:store_admin_panel/global_widgets/purchase_template/purchase_template.dart';
@@ -60,8 +61,7 @@ class TwoButtoms extends StatelessWidget {
             )),
         ElevatedButton(
             onPressed: () {
-                            myController.toAddProduct();
-
+              context.go('/addproduct');
             },
             child: const Row(
               children: [Icon(Icons.add), Text('add product')],

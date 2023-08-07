@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/global_widgets/texts/my_title.dart';
 import 'package:store_admin_panel/global_widgets/product_template/product_template.dart';
 import 'package:store_admin_panel/global_widgets/purchase_template/purchase_template.dart';
 
 class LargeOverviewBody extends StatelessWidget {
+
+
+
   const LargeOverviewBody({super.key});
 
   @override
@@ -52,8 +56,8 @@ class TwoButtoms extends StatelessWidget {
             )),
         ElevatedButton(
             onPressed: () {
-              myController.toAddProduct();
-            },
+             context.go('/addproduct');
+             myController.toAddProduct(context);            },
             child: const Row(
               children: [Icon(Icons.add), Text('add product')],
             )),
