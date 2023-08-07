@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_admin_panel/constants/constants.dart';
-import 'package:store_admin_panel/global_widgets/my_text.dart';
+import 'package:store_admin_panel/global_widgets/texts/my_text.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -9,29 +9,30 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: double.infinity,
       decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
-          boxShadow: const [
-            BoxShadow(color: Colors.black, blurRadius: 10)
-          ]),
-
-      child:  Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MyLogo(),
-          Divider(),
-          MyTile(PagesNames.overview, Icons.home),
-          MyTile(PagesNames.allProducts, Icons.store),
-          MyTile(PagesNames.allOrders, Icons.shopping_bag),
-          MyTheme(),
-        ],
+          boxShadow: const [BoxShadow(color: Colors.black, blurRadius: 10)]),
+      child: const SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            MyLogo(),
+            Divider(),
+            MyTile(PagesNames.overview, Icons.home),
+            MyTile(PagesNames.allProducts, Icons.store),
+            MyTile(PagesNames.allOrders, Icons.shopping_bag),
+            MyThemeTile(),
+          ],
+        ),
       ),
     );
   }
 }
 
-class MyTheme extends StatelessWidget {
-  const MyTheme({
+class MyThemeTile extends StatelessWidget {
+  const MyThemeTile({
     super.key,
   });
 
@@ -43,7 +44,7 @@ class MyTheme extends StatelessWidget {
           const SizedBox(width: 20),
           const Icon(Icons.light_mode),
           const SizedBox(width: 5),
-          MyText('brightness'),
+          const MyText('brightness'),
           const SizedBox(width: 5),
           SizedBox(
             width: 50,
@@ -58,11 +59,6 @@ class MyTheme extends StatelessWidget {
     });
   }
 }
-
-
-
-
-
 
 class MyTile extends StatelessWidget {
   const MyTile(this.txt, this.myIcon, {super.key});
@@ -79,6 +75,7 @@ class MyTile extends StatelessWidget {
         },
         onTap: () {},
         child: Container(
+          width: 200,
           margin: const EdgeInsets.all(5),
           decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,

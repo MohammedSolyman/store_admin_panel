@@ -9,7 +9,7 @@ class AddProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveDirector(
+    return const ResponsiveDirector(
       smallWidget: LargeAddProduct(),
       mediumWidget: LargeAddProduct(),
       largeWidget: LargeAddProduct(),);

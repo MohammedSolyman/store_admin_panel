@@ -37,6 +37,7 @@ class LatestPurchases extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
+        shrinkWrap: true,
           itemBuilder: (context, index) {
             return const PurchaseTemplate();
           },

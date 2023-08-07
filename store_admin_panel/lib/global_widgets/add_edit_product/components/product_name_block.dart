@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_admin_panel/global_widgets/my_text.dart';
+import 'package:store_admin_panel/global_widgets/texts/my_text.dart';
 
 class ProductNameBlock extends StatelessWidget {
   const ProductNameBlock({super.key});
@@ -9,8 +9,8 @@ class ProductNameBlock extends StatelessWidget {
     return Expanded(
         child: Column(
       children: [
-        MyText('product name \$ *'),
-        SizedBox(
+        const MyText('product name \$ *'),
+        const SizedBox(
           height: 5,
         ),
         SizedBox(

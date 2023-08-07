@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/global_widgets/my_button/my_button.dart';
-import 'package:store_admin_panel/global_widgets/my_text.dart';
+import 'package:store_admin_panel/global_widgets/texts/my_text.dart';
 import 'package:dotted_border/dotted_border.dart';
 class MiddleBlock extends StatelessWidget {
   const MiddleBlock({
@@ -15,7 +15,7 @@ class MiddleBlock extends StatelessWidget {
         flex: 3,
         child: Container(
           decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-          child: Row(
+          child: const Row(
             children: [FirstBlock(), ImageBlock(), ThirdBlock()],
           ),
         ));
@@ -29,7 +29,7 @@ class ThirdBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         MyButton(Icons.delete, 'clear image'),
@@ -49,7 +49,7 @@ class FirstBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return const Expanded(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,14 +79,14 @@ class ImageBlock extends StatelessWidget {
         decoration: BoxDecoration(color: Theme.of(context).primaryColor),
         child: DottedBorder(
           color: Theme.of(context).textTheme.bodyLarge!.color!,
-          borderPadding: EdgeInsets.all(8),
+          borderPadding: const EdgeInsets.all(8),
           borderType: BorderType.RRect,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [Icon(Icons.image),
-              SizedBox(height: 10,),
-               TextButton(onPressed: (){}, child: MyText('choose image'))],
+              children: [const Icon(Icons.image),
+              const SizedBox(height: 10,),
+               TextButton(onPressed: (){}, child: const MyText('choose image'))],
             ),
           ),
         ),
@@ -111,7 +111,7 @@ class OnSaleBlock extends StatelessWidget {
               onChanged: (bool? b) {
                 myController.changeCheckBoxValue(b!);
               }),
-          MyText('on sale'),
+          const MyText('on sale'),
         ],
       );
     });
@@ -128,25 +128,25 @@ class ProductMeasureUnit extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MyText('measre units'),
+        const MyText('measre units'),
         Obx(() {
           return Row(
             children: [
-              MyText('kg'),
+              const MyText('kg'),
               Radio(
                   value: Unit.kilo,
                   groupValue: myController.addProductModel.value.groupValue,
                   onChanged: (String? s) {
                     myController.changeGroupValue(s!);
                   }),
-              MyText('piece'),
+              const MyText('piece'),
               Radio(
                   value: Unit.piece,
                   groupValue: myController.addProductModel.value.groupValue,
                   onChanged: (String? s) {
                     myController.changeGroupValue(s!);
                   }),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               )
             ],
@@ -166,8 +166,8 @@ class ProductCategoryBlock extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MyText('product category'),
-        SizedBox(
+        const MyText('product category'),
+        const SizedBox(
           height: 5,
         ),
         DropdownMenu(
@@ -185,7 +185,7 @@ class ProductCategoryBlock extends StatelessWidget {
                   value: Category.categoryList[index],
                   label: Category.categoryList[index]);
             })),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
       ],
@@ -205,8 +205,8 @@ class ProductPriceBlock extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MyText('price in \$ *'),
-        SizedBox(
+        const MyText('price in \$ *'),
+        const SizedBox(
           height: 5,
         ),
         SizedBox(
@@ -219,10 +219,14 @@ class ProductPriceBlock extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10))),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
       ],
     );
   }
 }
+
+
+
+ 

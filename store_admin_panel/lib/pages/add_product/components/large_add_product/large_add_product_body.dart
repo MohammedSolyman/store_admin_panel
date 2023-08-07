@@ -8,6 +8,6 @@ class LargeAddProductBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: AddEditProduct()) ;
+    return const Expanded(child: AddEditProduct()) ;
   }
 }

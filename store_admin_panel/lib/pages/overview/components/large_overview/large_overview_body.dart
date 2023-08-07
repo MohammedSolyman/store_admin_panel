@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_admin_panel/constants/constants.dart';
-import 'package:store_admin_panel/global_widgets/my_title.dart';
+import 'package:store_admin_panel/global_widgets/texts/my_title.dart';
 import 'package:store_admin_panel/global_widgets/product_template/product_template.dart';
 import 'package:store_admin_panel/global_widgets/purchase_template/purchase_template.dart';
 
@@ -22,11 +22,11 @@ class LargeOverviewBody extends StatelessWidget {
               MySizedBox(),
               MyTitle('latest products'),
               MySizedBox(),
-              LatestProduct(4),
+             LatestProduct(4),
               MySizedBox(),
               MyTitle('latest orders'),
               MySizedBox(),
-              LatestPurchases()
+            LatestPurchases()
             ],
           ),
         ));

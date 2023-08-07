@@ -12,7 +12,7 @@ class AddEditProduct extends StatelessWidget {
     return Center(
       child: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           height: 600,
           width: 600,
           decoration: BoxDecoration(
@@ -23,7 +23,7 @@ class AddEditProduct extends StatelessWidget {
               ]),
               border: Border.all(color: Colors.black, width: 3),
               borderRadius: BorderRadius.circular(15)),
-          child: Column(
+          child: const Column(
             children: [
               ProductNameBlock(),
               MiddleBlock(),

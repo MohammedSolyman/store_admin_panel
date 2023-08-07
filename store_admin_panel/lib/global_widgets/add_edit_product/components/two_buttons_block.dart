@@ -9,7 +9,7 @@ class TwoButttonsBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return const Expanded(
         child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
