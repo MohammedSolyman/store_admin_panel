@@ -9,13 +9,9 @@ class LargeAddProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body:  const Center(
+      body: const Center(
         child: Row(
-          children: [
-            MyDrawer(),
-            SizedBox(width: 15),
-            LargeAddProductBody()
-          ],
+          children: [MyDrawer(), SizedBox(width: 15), LargeAddProductBody()],
         ),
       ),
     );

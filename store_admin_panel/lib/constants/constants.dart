@@ -1,46 +1,28 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:store_admin_panel/controllers/mycontroller.dart';
 
-
 //Controllers
-MyContorller myController = MyContorller.instance ;
-
-
-
+MyContorller myController = MyContorller.instance;
 
 //Pages names
 class PagesNames {
-  static const String  overview = 'overview';
-  static const String  allProducts = 'all products';
-  static const String  allOrders = 'all orders';
-   
+  static const String overview = 'overview';
+  static const String allProducts = 'all products';
+  static const String allOrders = 'all orders';
+  static const String editProduct = 'edit product';
+  static const String addProduct = 'add product';
 }
-
-
-
-
 
 class PagesPaths {
-  static const String  overview = '/overview';
-  static const String  allProducts = '/allproducts';
-  static const String  allOrders = '/allorders';
-  static const String  addProduct = '/addproduct';
-  static const String  editProduct = 'editproduct';
-   
+  static const String overview = '/overview';
+  static const String allProducts = '/allproducts';
+  static const String allOrders = '/allorders';
+  static const String addProduct = '/addproduct';
+  static const String editProduct = '/editproduct';
 }
-
-
-
-
-
-
 
 //GlobalKey
 GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
-
-
 
 class Unit {
   static const String kilo = "kilo";
@@ -53,8 +35,6 @@ class Category {
   static const String vegetables = "vegetables";
   static const String dairy = "dairy";
 
-
-
   static const List<String> categoryList = [
     Category.dairy,
     Category.fruits,
@@ -62,5 +42,3 @@ class Category {
     Category.grains
   ];
 }
-
-

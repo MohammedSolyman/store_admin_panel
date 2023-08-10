@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:store_admin_panel/global_widgets/drawer/drawer.dart';
+import 'package:store_admin_panel/pages/all_products/components/large_all_products/large_all_products.dart';
+import 'package:store_admin_panel/pages/all_products/components/not_large_all_products/not_large_all_products.dart';
+import 'package:store_admin_panel/responsiveness/responsiveness.dart';
 
-class Allproducts extends StatelessWidget {
-  const Allproducts({super.key});
+class AllProducts extends StatelessWidget {
+  const AllProducts({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
-      body: const Center(
-        child: Row(
-          children: [
-            MyDrawer(),
-            SizedBox(width: 15),
-            Center(
-              child: Text('all products'),
-            )
-          ],
-        ),
-      ),
-    );
+    return const ResponsiveDirector(
+        smallWidget: NotLargeAllProducts(),
+        mediumWidget: NotLargeAllProducts(),
+        largeWidget: LargeAllProducts());
   }
 }

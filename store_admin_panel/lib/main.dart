@@ -6,7 +6,6 @@ import 'package:store_admin_panel/routing/routing.dart';
 import 'themes/my_themedata.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-
 void main() {
   setPathUrlStrategy();
   Get.put(MyContorller());
@@ -18,29 +17,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-       () {
-        return GetMaterialApp.router(
-          themeMode: myController.themeModel.value.themeMode,
-          theme: MyThemeData.light,
-          darkTheme: MyThemeData.dark,
-          routeInformationParser: MyRouting.routerConfig.routeInformationParser,
-          routerDelegate: MyRouting.routerConfig.routerDelegate,
-          routeInformationProvider: MyRouting.routerConfig.routeInformationProvider,
-
-
-//           initialRoute: '/overview',
-//           getPages: [
-//             GetPage(name: '/overview', page: () => const Overview()),
-//           GetPage(name: '/addproduct', page: () => const AddProduct()),
-            
-// // GetPage(name: '/', page: ()=> Products()),
-// // GetPage(name: '/', page: ()=> EditProduct()),
-// // GetPage(name: '/', page: ()=> Orders()),
-// // GetPage(name: '/', page: ()=> Authentication()),
-//           ],
-        );
-      }
-    );
+    return Obx(() {
+      return GetMaterialApp.router(
+        themeMode: myController.themeModel.value.themeMode,
+        theme: MyThemeData.light,
+        darkTheme: MyThemeData.dark,
+        routeInformationParser: MyRouting.routerConfig.routeInformationParser,
+        routerDelegate: MyRouting.routerConfig.routerDelegate,
+        routeInformationProvider:
+            MyRouting.routerConfig.routeInformationProvider,
+      );
+    });
   }
 }

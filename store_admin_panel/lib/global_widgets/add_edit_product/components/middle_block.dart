@@ -4,6 +4,7 @@ import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/global_widgets/my_button/my_button.dart';
 import 'package:store_admin_panel/global_widgets/texts/my_text.dart';
 import 'package:dotted_border/dotted_border.dart';
+
 class MiddleBlock extends StatelessWidget {
   const MiddleBlock({
     super.key,
@@ -29,15 +30,18 @@ class ThirdBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        MyButton(Icons.delete, 'clear image'),
-        SizedBox(
-          height: 15,
-        ),
-        MyButton(Icons.upload, 'upload image')
-      ],
+    return const SizedBox(
+      width: 145,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          MyButton(Icons.delete, 'clear image'),
+          SizedBox(
+            height: 15,
+          ),
+          MyButton(Icons.upload, 'upload image')
+        ],
+      ),
     );
   }
 }
@@ -49,7 +53,8 @@ class FirstBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
+    return const SizedBox(
+      width: 145,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +77,6 @@ class ImageBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 2,
       child: Container(
         width: 250,
         height: 250,
@@ -84,9 +88,14 @@ class ImageBlock extends StatelessWidget {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [const Icon(Icons.image),
-              const SizedBox(height: 10,),
-               TextButton(onPressed: (){}, child: const MyText('choose image'))],
+              children: [
+                const Icon(Icons.image),
+                const SizedBox(
+                  height: 10,
+                ),
+                TextButton(
+                    onPressed: () {}, child: const MyText('choose image'))
+              ],
             ),
           ),
         ),
@@ -117,8 +126,6 @@ class OnSaleBlock extends StatelessWidget {
     });
   }
 }
-
-
 
 class ProductMeasureUnit extends StatelessWidget {
   const ProductMeasureUnit({super.key});
@@ -157,7 +164,6 @@ class ProductMeasureUnit extends StatelessWidget {
   }
 }
 
-
 class ProductCategoryBlock extends StatelessWidget {
   const ProductCategoryBlock({super.key});
 
@@ -169,6 +175,7 @@ class ProductCategoryBlock extends StatelessWidget {
         const MyText('product category'),
         const SizedBox(
           height: 5,
+          //   width: 50,
         ),
         DropdownMenu(
             inputDecorationTheme: InputDecorationTheme(
@@ -192,10 +199,6 @@ class ProductCategoryBlock extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 class ProductPriceBlock extends StatelessWidget {
   const ProductPriceBlock({super.key});
@@ -226,7 +229,3 @@ class ProductPriceBlock extends StatelessWidget {
     );
   }
 }
-
-
-
- 
