@@ -54,7 +54,7 @@ class FirstBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SizedBox(
-      width: 145,
+      width: 160,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -178,6 +178,7 @@ class ProductCategoryBlock extends StatelessWidget {
           //   width: 50,
         ),
         DropdownMenu(
+            enableFilter: true,
             inputDecorationTheme: InputDecorationTheme(
                 fillColor: Theme.of(context).primaryColor,
                 filled: true,

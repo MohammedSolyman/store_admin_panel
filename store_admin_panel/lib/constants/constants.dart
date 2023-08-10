@@ -38,7 +38,7 @@ class Category {
   static const List<String> categoryList = [
     Category.dairy,
     Category.fruits,
-    Category.dairy,
+    Category.vegetables,
     Category.grains
   ];
 }

@@ -8,7 +8,7 @@ import 'package:store_admin_panel/pages/overview/overview.dart';
 
 class MyRouting {
   static final GoRouter routerConfig =
-      GoRouter(initialLocation: PagesPaths.editProduct, routes: <RouteBase>[
+      GoRouter(initialLocation: PagesPaths.overview, routes: <RouteBase>[
     GoRoute(
         builder: (context, state) {
           return const Overview();

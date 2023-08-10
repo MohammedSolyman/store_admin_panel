@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/global_widgets/my_sized_box/my_sized_box.dart';
+import 'package:store_admin_panel/global_widgets/product/latest_products.dart';
 import 'package:store_admin_panel/global_widgets/texts/my_title.dart';
-import 'package:store_admin_panel/global_widgets/product_template/product_template.dart';
-import 'package:store_admin_panel/global_widgets/purchase_template/purchase_template.dart';
+import 'package:store_admin_panel/global_widgets/product/product_template/product_template.dart';
+import 'package:store_admin_panel/global_widgets/purchase/purchase_template/purchase_template.dart';
 import 'package:store_admin_panel/global_widgets/title_and_search/title_and_search.dart';
 
 class LargeOverviewBody extends StatelessWidget {

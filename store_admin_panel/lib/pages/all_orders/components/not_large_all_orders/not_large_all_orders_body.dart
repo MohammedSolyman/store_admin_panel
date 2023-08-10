@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_admin_panel/constants/constants.dart';
+import 'package:store_admin_panel/global_widgets/purchase/all_purchases_list.dart';
 import 'package:store_admin_panel/global_widgets/title_and_search/title_and_search.dart';
 
 class NotLargeAllOrdersBody extends StatelessWidget {
@@ -13,6 +14,7 @@ class NotLargeAllOrdersBody extends StatelessWidget {
       child: const Column(
         children: [
           TitleAndSearch(PagesNames.allOrders, true),
+          AllPurchasesList()
         ],
       ),
     );
