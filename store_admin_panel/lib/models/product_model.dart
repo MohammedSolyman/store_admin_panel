@@ -7,8 +7,8 @@ class ProductModel {
   String productCategory = Category.grains;
   bool isOnSale = false;
   String productImage = "";
-  DateTime createdOn;
-  DateTime lastModifiedOn;
+  int createdOn = 0;
+  int lastModifiedOn = 0;
 
   ProductModel(
       {required this.productName,
@@ -19,6 +19,17 @@ class ProductModel {
       required this.productImage,
       required this.createdOn,
       required this.lastModifiedOn});
+
+  ProductModel.fromMap(Map<String, dynamic> myMap) {
+    productName = myMap['productName'];
+    productPrice = myMap['productPrice'];
+    productUnit = myMap['productUnit'];
+    productCategory = myMap['productCategory'];
+    isOnSale = myMap['isOnSale'];
+    productImage = myMap['productImage'];
+    createdOn = myMap['createdOn'];
+    lastModifiedOn = myMap['lastModifiedOn'];
+  }
 
   Map<String, dynamic> toMap() {
     return {

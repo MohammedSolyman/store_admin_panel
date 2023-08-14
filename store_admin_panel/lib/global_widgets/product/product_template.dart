@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:store_admin_panel/constants/constants.dart';
+import 'package:store_admin_panel/models/product_model.dart';
 
 class ProductTemplate extends StatelessWidget {
-  const ProductTemplate({super.key});
+  const ProductTemplate(this.myProduct, {super.key});
+
+  final ProductModel myProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -21,21 +24,23 @@ class ProductTemplate extends StatelessWidget {
                   Container(
                     height: 125,
                     width: 100,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(image: AssetImage('store.png'))),
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(myProduct.productImage))),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '\$ 15',
+                        '\$ ${myProduct.productPrice}',
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
-                      Text('kilo',
+                      Text(myProduct.productUnit,
                           style: Theme.of(context).textTheme.bodyLarge),
                     ],
                   ),
-                  Text('banana', style: Theme.of(context).textTheme.bodyLarge),
+                  Text(myProduct.productName,
+                      style: Theme.of(context).textTheme.bodyLarge),
                 ],
               ),
             ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/global_widgets/my_sized_box/my_sized_box.dart';
-import 'package:store_admin_panel/global_widgets/product/latest_products.dart';
+import 'package:store_admin_panel/global_widgets/product/product_templates.dart';
 import 'package:store_admin_panel/global_widgets/purchase/purchase_template/purchase_template.dart';
 import 'package:store_admin_panel/global_widgets/title_and_search/title_and_search.dart';
 
@@ -14,7 +14,7 @@ class SmallOverviewBody extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(7),
       color: Theme.of(context).primaryColor,
-      child: const Column(
+      child: Column(
         children: [
           TitleAndSearch(PagesNames.overview, true),
           MySizedBox(),
@@ -22,7 +22,9 @@ class SmallOverviewBody extends StatelessWidget {
           MySizedBox(),
           MyTitle('latest products'),
           MySizedBox(),
-          LatestProduct(2),
+          LatestProductsTemplates(
+            countPerLine: 2,
+          ),
           MySizedBox(),
           MyTitle('latest orders'),
           MySizedBox(),

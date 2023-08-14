@@ -1,14 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store_admin_panel/controllers/data_controller.dart';
 import 'package:store_admin_panel/models/theme_model.dart';
 
-
-
-
-
-class ThemeController extends GetxController {
+class ThemeController extends DataController {
   Rx<ThemeModel> themeModel = ThemeModel().obs;
   static ThemeController themeInstance = Get.find<ThemeController>();
 
@@ -23,7 +18,4 @@ class ThemeController extends GetxController {
       }
     });
   }
-
-  
 }
-

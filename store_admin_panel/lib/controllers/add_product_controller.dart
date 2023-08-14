@@ -7,17 +7,6 @@ import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/controllers/navigation_controller.dart';
 import 'package:store_admin_panel/models/product_model.dart';
 
-/*
-MyController extend:
-    ThemeController
-    VisibilityContorller
-    PagesController
-    AddEditProductPageController
-    EditProductController
-    NavigationController
-    addProductController
-*/
-
 class AddProductController extends NavigationController {
   chooseImage() async {
     //choose an image and display it on the screen
@@ -85,7 +74,7 @@ class AddProductController extends NavigationController {
     String productCategory = addProductModel.value.categoryGroupValue;
     String productUnit = addProductModel.value.unitGroupValue;
     bool isOnSale = addProductModel.value.isOnSaleBoxValue;
-    DateTime now = DateTime.now();
+    int now = DateTime.now().millisecondsSinceEpoch;
 
     ProductModel productModel = ProductModel(
         productName: productName,
@@ -118,7 +107,17 @@ class AddProductController extends NavigationController {
       clearImage();
       _clearData();
 
-      //4. notify the user that the product was succesfully added
+      //4. update the products list
+      ProductModel myProduct = ProductModel.fromMap(myMap);
+      dataModel.value.allProducts.add(myProduct);
+
+      //5. update the latest products list
+      dataModel.value.latestProducts.add(myProduct);
+      dataModel.value.latestProducts
+          .sort((a, b) => a.lastModifiedOn.compareTo(b.lastModifiedOn));
+      dataModel.value.latestProducts.removeLast();
+
+      //6. notify the user that the product was succesfully added
       AlertDialog x = const AlertDialog(
         content: Text('the product was succesfully added'),
       );

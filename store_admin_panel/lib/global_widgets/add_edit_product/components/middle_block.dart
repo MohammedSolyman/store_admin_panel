@@ -87,7 +87,7 @@ class ImageBlock extends StatelessWidget {
             width: 250,
             height: 250,
             decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-            child: SelectedWidget()));
+            child: const SelectedWidget()));
   }
 }
 
