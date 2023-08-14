@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import "package:get/get.dart";
 import 'package:store_admin_panel/controllers/mycontroller.dart';
@@ -6,8 +7,19 @@ import 'package:store_admin_panel/routing/routing.dart';
 import 'themes/my_themedata.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-void main() {
+void main() async {
   setPathUrlStrategy();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+        apiKey: "AIzaSyDE9e-5PVsyPnkfYckw77-Z4tin9sCldj8",
+        authDomain: "store-1-f7852.firebaseapp.com",
+        projectId: "store-1-f7852",
+        storageBucket: "store-1-f7852.appspot.com",
+        messagingSenderId: "400428991281",
+        appId: "1:400428991281:web:9ac830de71bf9a41612610"),
+  );
+
   Get.put(MyContorller());
   runApp(const MainApp());
 }

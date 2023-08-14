@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
-  const MyButton(
-    this.icon,
-    this.txt, {
+  const MyButton({
+    required this.icon,
+    required this.txt,
+    this.func,
+    this.contextFunc,
     super.key,
   });
 
   final IconData icon;
   final String txt;
+  final Function? func;
+  final Function(BuildContext context)? contextFunc;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          func == null ? contextFunc!(context) : func!();
+        },
         child: Row(
           children: [Icon(icon), Text(txt)],
         ));

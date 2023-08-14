@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/global_widgets/my_button/my_button.dart';
-
 
 class TwoButttonsBlock extends StatelessWidget {
   const TwoButttonsBlock({
@@ -9,12 +9,16 @@ class TwoButttonsBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
+    return Expanded(
         child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        MyButton(Icons.delete, 'delete'),
-        MyButton(Icons.upload, 'upload'),
+        MyButton(
+            icon: Icons.delete, txt: 'delete', func: myController.addProduct),
+        MyButton(
+            icon: Icons.upload,
+            txt: 'upload',
+            contextFunc: myController.uploadFunc),
       ],
     ));
   }

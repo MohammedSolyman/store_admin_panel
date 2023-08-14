@@ -1,7 +1,3 @@
+import 'package:store_admin_panel/controllers/add_edit_product_page_controller.dart';
 
-
-import 'package:store_admin_panel/controllers/add_product_controller.dart';
-
-class EditProductController extends AddProductController {
-  
-}
+class EditProductController extends AddEditProductPageController {}

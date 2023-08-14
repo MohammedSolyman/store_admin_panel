@@ -30,16 +30,22 @@ class ThirdBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    return SizedBox(
       width: 145,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          MyButton(Icons.delete, 'clear image'),
-          SizedBox(
+          MyButton(
+              icon: Icons.delete,
+              txt: 'clear image',
+              func: myController.clearImage),
+          const SizedBox(
             height: 15,
           ),
-          MyButton(Icons.upload, 'upload image')
+          MyButton(
+              icon: Icons.upload,
+              txt: 'choose image',
+              func: myController.chooseImage)
         ],
       ),
     );
@@ -77,30 +83,11 @@ class ImageBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        width: 250,
-        height: 250,
-        decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-        child: DottedBorder(
-          color: Theme.of(context).textTheme.bodyLarge!.color!,
-          borderPadding: const EdgeInsets.all(8),
-          borderType: BorderType.RRect,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(Icons.image),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextButton(
-                    onPressed: () {}, child: const MyText('choose image'))
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+        child: Container(
+            width: 250,
+            height: 250,
+            decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+            child: SelectedWidget()));
   }
 }
 
@@ -116,9 +103,9 @@ class OnSaleBlock extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Checkbox(
-              value: myController.addProductModel.value.checkBoxValue,
+              value: myController.addProductModel.value.isOnSaleBoxValue,
               onChanged: (bool? b) {
-                myController.changeCheckBoxValue(b!);
+                myController.changeisOnSaleBoxValue(b!);
               }),
           const MyText('on sale'),
         ],
@@ -142,14 +129,14 @@ class ProductMeasureUnit extends StatelessWidget {
               const MyText('kg'),
               Radio(
                   value: Unit.kilo,
-                  groupValue: myController.addProductModel.value.groupValue,
+                  groupValue: myController.addProductModel.value.unitGroupValue,
                   onChanged: (String? s) {
                     myController.changeGroupValue(s!);
                   }),
               const MyText('piece'),
               Radio(
                   value: Unit.piece,
-                  groupValue: myController.addProductModel.value.groupValue,
+                  groupValue: myController.addProductModel.value.unitGroupValue,
                   onChanged: (String? s) {
                     myController.changeGroupValue(s!);
                   }),
@@ -175,9 +162,11 @@ class ProductCategoryBlock extends StatelessWidget {
         const MyText('product category'),
         const SizedBox(
           height: 5,
-          //   width: 50,
         ),
         DropdownMenu(
+            onSelected: (value) {
+              myController.changeCategoryGroupValue(value!);
+            },
             enableFilter: true,
             inputDecorationTheme: InputDecorationTheme(
                 fillColor: Theme.of(context).primaryColor,
@@ -216,6 +205,7 @@ class ProductPriceBlock extends StatelessWidget {
         SizedBox(
           height: 40,
           child: TextFormField(
+            controller: myController.addProductModel.value.tecProductPrice,
             decoration: InputDecoration(
                 filled: true,
                 fillColor: Theme.of(context).primaryColor,
@@ -228,5 +218,34 @@ class ProductPriceBlock extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class SelectedWidget extends StatelessWidget {
+  const SelectedWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      if (myController.addProductModel.value.fileBytes != null &&
+          myController.addProductModel.value.imageName != "") {
+        return Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: MemoryImage(
+                      myController.addProductModel.value.fileBytes!))),
+        );
+      } else {
+        return DottedBorder(
+          color: Theme.of(context).textTheme.bodyLarge!.color!,
+          borderPadding: const EdgeInsets.all(10),
+          borderType: BorderType.RRect,
+          child: const Center(
+            child: Icon(Icons.image),
+          ),
+        );
+      }
+    });
   }
 }
