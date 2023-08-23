@@ -9,13 +9,9 @@ class LargeOverview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body:  const Center(
+      body: const Center(
         child: Row(
-          children: [
-            MyDrawer(),
-            SizedBox(width: 15),
-            LargeOverviewBody()
-          ],
+          children: [MyDrawer(), SizedBox(width: 15), LargeOverviewBody()],
         ),
       ),
     );

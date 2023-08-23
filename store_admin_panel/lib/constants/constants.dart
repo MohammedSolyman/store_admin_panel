@@ -20,7 +20,7 @@ class PagesPaths {
   static const String allProducts = '/allproducts';
   static const String allOrders = '/allorders';
   static const String addProduct = '/addproduct';
-  static const String editProduct = '/editproduct';
+  static const String editProduct = '/editproduct/:product';
   static const String signInPage = '/signinpage';
   static const String signUpPage = '/signuppage';
 }

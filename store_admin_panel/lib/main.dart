@@ -8,11 +8,22 @@ import 'themes/my_themedata.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 /*
+
+
+getting products and purchases were improved, the project was reorganised
+
+
+
+required:
+edit page
+overflow problem
+categories management
+
 mohammedsolyman10@gmail.com
 123456789
 
 
-
+admin
 mohammed_solyman25@yahoo.com
 123456789
 git push https://github.com/MohammedSolyman/store_admin_panel.git master

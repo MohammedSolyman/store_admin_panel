@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_admin_panel/constants/constants.dart';
-import 'package:store_admin_panel/global_widgets/add_edit_product/add_edit_product.dart';
+import 'package:store_admin_panel/global_widgets/add_edit_product/edit_product_template.dart';
 import 'package:store_admin_panel/global_widgets/my_sized_box/my_sized_box.dart';
 import 'package:store_admin_panel/global_widgets/title_and_search/title_and_search.dart';
 
@@ -17,7 +17,7 @@ class NotLargeEditProductBody extends StatelessWidget {
           children: [
             TitleAndSearch(PagesNames.editProduct, true),
             MySizedBox(),
-            AddEditProduct()
+            EditProductTemplate()
           ],
         ),
       ),

@@ -17,7 +17,9 @@ class ProductNameBlock extends StatelessWidget {
         SizedBox(
           height: 40,
           child: TextFormField(
-            controller: myController.addProductModel.value.tecProductName,
+            initialValue:
+                myController.editProductPageModel.value.tecProductName.text,
+            controller: myController.editProductPageModel.value.tecProductName,
             decoration: InputDecoration(
                 fillColor: Theme.of(context).primaryColor,
                 filled: true,

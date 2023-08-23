@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:store_admin_panel/constants/constants.dart';
-import 'package:store_admin_panel/controllers/add_product_controller.dart';
+import 'package:store_admin_panel/controllers/edit_product_controller.dart';
 import 'package:store_admin_panel/models/sign_in_page_model.dart';
 
-class SignInPageController extends AddProductController {
+class SignInPageController extends EditProductController {
   Rx<SignInPageModel> signInPageModel = SignInPageModel().obs;
 
   void _clearTec() {
@@ -40,9 +40,13 @@ class SignInPageController extends AddProductController {
           await FirebaseFirestore.instance.collection('admin').get();
       List<QueryDocumentSnapshot<Map<String, dynamic>>> myList = qSS.docs;
       List<String> idList = [];
-      myList.forEach((QueryDocumentSnapshot<Map<String, dynamic>> element) {
+      for (var element in myList) {
         idList.add(element.data()['id']);
-      });
+      }
+
+      //   myList.forEach((QueryDocumentSnapshot<Map<String, dynamic>> element) {
+      //   idList.add(element.data()['id']);
+      // });
 
       if (idList.contains(thisUserId)) {
         //proceed:

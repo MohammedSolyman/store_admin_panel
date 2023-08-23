@@ -5,4 +5,5 @@ class DataModel {
   List<Product> allProducts = [];
   List<Product> latestProducts = [];
   List<Purchase> allPurchases = [];
+  List<Purchase> latestPurchases = [];
 }

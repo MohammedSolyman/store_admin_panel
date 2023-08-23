@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/global_widgets/my_sized_box/my_sized_box.dart';
-import 'package:store_admin_panel/global_widgets/product/product_templates.dart';
-import 'package:store_admin_panel/global_widgets/purchase/purchase_template/purchase_template.dart';
+import 'package:store_admin_panel/global_widgets/product/products_template.dart';
+import 'package:store_admin_panel/global_widgets/purchase/latest_purchases.dart';
 import 'package:store_admin_panel/global_widgets/title_and_search/title_and_search.dart';
 
 class MediumOverviewBody extends StatelessWidget {

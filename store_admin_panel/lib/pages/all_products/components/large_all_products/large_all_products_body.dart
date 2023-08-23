@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_admin_panel/constants/constants.dart';
-import 'package:store_admin_panel/global_widgets/product/product_templates.dart';
+import 'package:store_admin_panel/global_widgets/product/products_template.dart';
 import 'package:store_admin_panel/global_widgets/title_and_search/title_and_search.dart';
 
 class LargeAllProductsBody extends StatelessWidget {

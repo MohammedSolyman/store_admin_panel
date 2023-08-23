@@ -7,89 +7,93 @@ import 'package:store_admin_panel/models/data_model.dart';
 class DataController extends GetxController {
   Rx<DataModel> dataModel = DataModel().obs;
 
-  _getAllProducts() async {
+  _getProducts() async {
     FirebaseFirestore myInstance = FirebaseFirestore.instance;
 
     CollectionReference<Map<String, dynamic>> colRef =
         myInstance.collection('products');
 
-    QuerySnapshot<Map<String, dynamic>> qurySS = await colRef.get();
+    Query<Map<String, dynamic>> q =
+        colRef.orderBy('lastModifiedOn', descending: true);
+    QuerySnapshot<Map<String, dynamic>> qurySS = await q.get();
 
     List<QueryDocumentSnapshot<Map<String, dynamic>>> myList = qurySS.docs;
 
     List<Product> x = [];
 
-    myList.forEach((QueryDocumentSnapshot<Map<String, dynamic>> element) {
+    for (var element in myList) {
       Map<String, dynamic> myMap = element.data();
 
       Product product = Product.fromMap(myMap);
 
       x.add(product);
-    });
+    }
+
+    // myList.forEach((QueryDocumentSnapshot<Map<String, dynamic>> element) {
+    //   Map<String, dynamic> myMap = element.data();
+
+    //   Product product = Product.fromMap(myMap);
+
+    //   x.add(product);
+    // });
 
     dataModel.update((val) {
       val!.allProducts = x;
+
+      if (val.allProducts.length < 5) {
+        val.latestProducts = val.allProducts;
+      } else {
+        val.latestProducts = val.allProducts.sublist(1, 5);
+      }
     });
   }
 
-  _getLatestProducts() async {
-    FirebaseFirestore myInstance = FirebaseFirestore.instance;
-
-    CollectionReference<Map<String, dynamic>> colRef =
-        myInstance.collection('products');
-
-    Query<Map<String, dynamic>> myQuery = colRef.orderBy('lastModifiedOn');
-    Query<Map<String, dynamic>> myQuery2 = myQuery.limit(4);
-
-    QuerySnapshot<Map<String, dynamic>> qurySS = await myQuery2.get();
-
-    List<QueryDocumentSnapshot<Map<String, dynamic>>> myList = qurySS.docs;
-
-    List<Product> x = [];
-
-    myList.forEach((QueryDocumentSnapshot<Map<String, dynamic>> element) {
-      Map<String, dynamic> myMap = element.data();
-
-      Product product = Product.fromMap(myMap);
-
-      x.add(product);
-    });
-
-    dataModel.update((val) {
-      val!.latestProducts = x;
-    });
-  }
-
-  _getAllPurchases() async {
+  _getPurchases() async {
     FirebaseFirestore myInstance = FirebaseFirestore.instance;
 
     CollectionReference<Map<String, dynamic>> colRef =
         myInstance.collection('orders');
 
-    QuerySnapshot<Map<String, dynamic>> qurySS = await colRef.get();
+    Query<Map<String, dynamic>> q =
+        colRef.orderBy('purchaseTime', descending: true);
+
+    QuerySnapshot<Map<String, dynamic>> qurySS = await q.get();
 
     List<QueryDocumentSnapshot<Map<String, dynamic>>> myList = qurySS.docs;
 
     List<Purchase> x = [];
 
-    myList.forEach((QueryDocumentSnapshot<Map<String, dynamic>> element) {
+    for (var element in myList) {
       Map<String, dynamic> myMap = element.data();
 
       Purchase purchase = Purchase.fromMap(myMap);
 
       x.add(purchase);
-    });
+    }
+
+    //   myList.forEach((QueryDocumentSnapshot<Map<String, dynamic>> element) {
+    //   Map<String, dynamic> myMap = element.data();
+
+    //   Purchase purchase = Purchase.fromMap(myMap);
+
+    //   x.add(purchase);
+    // });
 
     dataModel.update((val) {
       val!.allPurchases = x;
+
+      if (val.allPurchases.length < 5) {
+        val.latestPurchases = val.allPurchases;
+      } else {
+        val.latestPurchases = val.allPurchases.sublist(1, 5);
+      }
     });
   }
 
   @override
   void onInit() async {
     super.onInit();
-    await _getAllProducts();
-    await _getLatestProducts();
-    await _getAllPurchases();
+    await _getProducts();
+    await _getPurchases();
   }
 }
