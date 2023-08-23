@@ -8,7 +8,7 @@ import 'themes/my_themedata.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 /*
-https://github.com/MohammedSolyman/store_admin_panel.git
+git push https://github.com/MohammedSolyman/store_admin_panel.git master
 */
 void main() async {
   setPathUrlStrategy();
