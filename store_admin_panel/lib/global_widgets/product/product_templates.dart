@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/global_widgets/product/product_template.dart';
-import 'package:store_admin_panel/models/product_model.dart';
+import 'package:store_admin_panel/data_types/product.dart';
 
 class ProductTemplates extends StatelessWidget {
   const ProductTemplates(
       {required this.countPerLine, required this.dataList, super.key});
 
   final int countPerLine;
-  final List<ProductModel> dataList;
+  final List<Product> dataList;
 
   @override
   Widget build(BuildContext context) {
-    return dataList.length == 0
-        ? Text('there is no products')
+    return dataList.isEmpty
+        ? const Text('there is no products')
         : GridView.builder(
             shrinkWrap: true,
             itemCount: dataList.length,
@@ -25,7 +25,7 @@ class ProductTemplates extends StatelessWidget {
               mainAxisExtent: 175,
             ),
             itemBuilder: (BuildContext context, int index) {
-              ProductModel myProduct = dataList[index];
+              Product myProduct = dataList[index];
               return ProductTemplate(myProduct);
             });
   }

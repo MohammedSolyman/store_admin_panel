@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/controllers/navigation_controller.dart';
-import 'package:store_admin_panel/models/product_model.dart';
+import 'package:store_admin_panel/data_types/product.dart';
 
 class AddProductController extends NavigationController {
   chooseImage() async {
@@ -76,7 +76,7 @@ class AddProductController extends NavigationController {
     bool isOnSale = addProductModel.value.isOnSaleBoxValue;
     int now = DateTime.now().millisecondsSinceEpoch;
 
-    ProductModel productModel = ProductModel(
+    Product productModel = Product(
         productName: productName,
         productPrice: productPrice,
         productUnit: productUnit,
@@ -108,7 +108,7 @@ class AddProductController extends NavigationController {
       _clearData();
 
       //4. update the products list
-      ProductModel myProduct = ProductModel.fromMap(myMap);
+      Product myProduct = Product.fromMap(myMap);
       dataModel.value.allProducts.add(myProduct);
 
       //5. update the latest products list

@@ -7,6 +7,9 @@ import 'package:store_admin_panel/routing/routing.dart';
 import 'themes/my_themedata.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+/*
+https://github.com/MohammedSolyman/store_admin_panel.git
+*/
 void main() async {
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();

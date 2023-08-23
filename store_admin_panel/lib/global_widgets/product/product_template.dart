@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:store_admin_panel/constants/constants.dart';
-import 'package:store_admin_panel/models/product_model.dart';
+import 'package:store_admin_panel/data_types/product.dart';
 
 class ProductTemplate extends StatelessWidget {
   const ProductTemplate(this.myProduct, {super.key});
 
-  final ProductModel myProduct;
+  final Product myProduct;
 
   @override
   Widget build(BuildContext context) {

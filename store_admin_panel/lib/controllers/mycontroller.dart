@@ -14,5 +14,5 @@ MyController extend:
 */
 
 class MyContorller extends AddProductController {
-  static MyContorller instance = Get.find();
+  static MyContorller instance = Get.find<MyContorller>();
 }

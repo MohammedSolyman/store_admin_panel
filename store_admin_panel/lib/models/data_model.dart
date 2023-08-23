@@ -1,6 +1,6 @@
-import 'package:store_admin_panel/models/product_model.dart';
+import 'package:store_admin_panel/data_types/product.dart';
 
 class DataModel {
-  List<ProductModel> allProducts = [];
-  List<ProductModel> latestProducts = [];
+  List<Product> allProducts = [];
+  List<Product> latestProducts = [];
 }

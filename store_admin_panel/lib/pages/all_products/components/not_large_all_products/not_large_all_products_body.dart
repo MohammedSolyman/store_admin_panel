@@ -11,7 +11,7 @@ class NotLargeAllProductsBody extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(7),
       color: Theme.of(context).primaryColor,
-      child: Column(
+      child: const Column(
         children: [
           TitleAndSearch(PagesNames.allProducts, true),
           Expanded(

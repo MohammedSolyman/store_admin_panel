@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
-import 'package:store_admin_panel/controllers/add_product_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:store_admin_panel/data_types/product.dart';
 import 'package:store_admin_panel/models/data_model.dart';
-import 'package:store_admin_panel/models/product_model.dart';
 
 class DataController extends GetxController {
   Rx<DataModel> dataModel = DataModel().obs;
@@ -17,12 +16,12 @@ class DataController extends GetxController {
 
     List<QueryDocumentSnapshot<Map<String, dynamic>>> myList = qurySS.docs;
 
-    List<ProductModel> x = [];
+    List<Product> x = [];
 
     myList.forEach((QueryDocumentSnapshot<Map<String, dynamic>> element) {
       Map<String, dynamic> myMap = element.data();
 
-      ProductModel product = ProductModel.fromMap(myMap);
+      Product product = Product.fromMap(myMap);
 
       x.add(product);
     });
@@ -45,12 +44,12 @@ class DataController extends GetxController {
 
     List<QueryDocumentSnapshot<Map<String, dynamic>>> myList = qurySS.docs;
 
-    List<ProductModel> x = [];
+    List<Product> x = [];
 
     myList.forEach((QueryDocumentSnapshot<Map<String, dynamic>> element) {
       Map<String, dynamic> myMap = element.data();
 
-      ProductModel product = ProductModel.fromMap(myMap);
+      Product product = Product.fromMap(myMap);
 
       x.add(product);
     });
