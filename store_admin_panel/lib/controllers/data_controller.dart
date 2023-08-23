@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:store_admin_panel/data_types/product.dart';
+import 'package:store_admin_panel/data_types/purchase.dart';
 import 'package:store_admin_panel/models/data_model.dart';
 
 class DataController extends GetxController {
@@ -59,10 +60,36 @@ class DataController extends GetxController {
     });
   }
 
+  _getAllPurchases() async {
+    FirebaseFirestore myInstance = FirebaseFirestore.instance;
+
+    CollectionReference<Map<String, dynamic>> colRef =
+        myInstance.collection('orders');
+
+    QuerySnapshot<Map<String, dynamic>> qurySS = await colRef.get();
+
+    List<QueryDocumentSnapshot<Map<String, dynamic>>> myList = qurySS.docs;
+
+    List<Purchase> x = [];
+
+    myList.forEach((QueryDocumentSnapshot<Map<String, dynamic>> element) {
+      Map<String, dynamic> myMap = element.data();
+
+      Purchase purchase = Purchase.fromMap(myMap);
+
+      x.add(purchase);
+    });
+
+    dataModel.update((val) {
+      val!.allPurchases = x;
+    });
+  }
+
   @override
   void onInit() async {
     super.onInit();
     await _getAllProducts();
     await _getLatestProducts();
+    await _getAllPurchases();
   }
 }

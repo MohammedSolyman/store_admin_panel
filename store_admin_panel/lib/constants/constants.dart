@@ -11,6 +11,8 @@ class PagesNames {
   static const String allOrders = 'all orders';
   static const String editProduct = 'edit product';
   static const String addProduct = 'add product';
+  static const String signInPage = 'sign in';
+  static const String signUpPage = 'sign up';
 }
 
 class PagesPaths {
@@ -19,6 +21,8 @@ class PagesPaths {
   static const String allOrders = '/allorders';
   static const String addProduct = '/addproduct';
   static const String editProduct = '/editproduct';
+  static const String signInPage = '/signinpage';
+  static const String signUpPage = '/signuppage';
 }
 
 //GlobalKey

@@ -8,6 +8,9 @@ import 'themes/my_themedata.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 /*
+
+mohammed_solyman25@yahoo.com
+123456789
 git push https://github.com/MohammedSolyman/store_admin_panel.git master
 */
 void main() async {

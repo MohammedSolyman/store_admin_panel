@@ -34,4 +34,12 @@ class NavigationController extends EditProductController {
         break;
     }
   }
+
+  void toSignUp(context) {
+    GoRouter.of(context).go(PagesPaths.signUpPage);
+  }
+
+  void toSignIn(context) {
+    GoRouter.of(context).go(PagesPaths.signInPage);
+  }
 }
