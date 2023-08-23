@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,18 +33,36 @@ class SignInPageController extends AddProductController {
         password: password,
       );
 
-      if (credential.user!.emailVerified) {
-        //  Get.back();
+      //check if this user is an admin
+      String thisUserId = FirebaseAuth.instance.currentUser!.uid;
 
-        GoRouter.of(context).replace(PagesPaths.overview);
+      QuerySnapshot<Map<String, dynamic>> qSS =
+          await FirebaseFirestore.instance.collection('admin').get();
+      List<QueryDocumentSnapshot<Map<String, dynamic>>> myList = qSS.docs;
+      List<String> idList = [];
+      myList.forEach((QueryDocumentSnapshot<Map<String, dynamic>> element) {
+        idList.add(element.data()['id']);
+      });
+
+      if (idList.contains(thisUserId)) {
+        //proceed:
+
+        if (credential.user!.emailVerified) {
+          //  Get.back();
+
+          GoRouter.of(context).replace(PagesPaths.overview);
+        } else {
+          // Get.back();
+
+          // showMyDialoge(
+          //     context: context,
+          //     col: Colors.orange,
+          //     title: 'Unverified user',
+          //     content: 'please go to your eamil to activate your account.');
+        }
+        // sign out if this user is not an admin
       } else {
-        // Get.back();
-
-        // showMyDialoge(
-        //     context: context,
-        //     col: Colors.orange,
-        //     title: 'Unverified user',
-        //     content: 'please go to your eamil to activate your account.');
+        await FirebaseAuth.instance.signOut();
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
