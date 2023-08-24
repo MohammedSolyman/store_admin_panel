@@ -11,10 +11,11 @@ class EditProductPage extends StatelessWidget {
   final Product product;
   @override
   Widget build(BuildContext context) {
-    myController.manipulateEditTec(product);
-    return ResponsiveDirector(
-        smallWidget: NotLargeEditProduct(product: product),
-        mediumWidget: NotLargeEditProduct(product: product),
-        largeWidget: LargeEditProduct(product: product));
+    myController.manipulateEditProperties(product);
+
+    return const ResponsiveDirector(
+        smallWidget: NotLargeEditProduct(),
+        mediumWidget: NotLargeEditProduct(),
+        largeWidget: LargeEditProduct());
   }
 }

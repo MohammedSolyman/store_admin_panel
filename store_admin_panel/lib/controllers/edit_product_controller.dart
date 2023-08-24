@@ -6,23 +6,16 @@ import 'package:store_admin_panel/models/edit_product_page_model.dart';
 class EditProductPageController extends AddProductController {
   Rx<EditProductPageModel> editProductPageModel = EditProductPageModel().obs;
 
-  manipulateEditTec(Product? product) {
+  manipulateEditProperties(Product? product) {
     //this function wil be called once EditProductPage() will be called.
     if (product != null) {
       editProductPageModel.update((val) {
         val!.tecProductName.text = product.productName;
         val.tecProductPrice.text = product.productPrice.toString();
-
-        print('product.productPrice.toString()-------------------');
-        print(product.productPrice.toString());
-        print('val.tecProductPrice.text-------------------');
-        print(val.tecProductPrice.text);
-
+        val.unitGroupValue = product.productUnit;
+        val.categoryGroupValue = product.productCategory;
+        val.isOnSaleBoxValue = product.isOnSale;
         val.imageName = product.productImage;
-
-        // String unitGroupValue = Unit.kilo;
-        // String categoryGroupValue = "";
-        // bool isOnSaleBoxValue = false;
       });
     }
   }

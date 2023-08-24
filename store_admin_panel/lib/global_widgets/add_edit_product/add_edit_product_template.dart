@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:store_admin_panel/data_types/product.dart';
-import 'package:store_admin_panel/global_widgets/add_edit_product/components/middle_block.dart';
-import 'package:store_admin_panel/global_widgets/add_edit_product/components/product_name_block.dart';
-import 'package:store_admin_panel/global_widgets/add_edit_product/components/two_buttons_block.dart';
+import 'package:store_admin_panel/global_widgets/add_edit_product/components/lower_block/lower_block.dart';
+import 'package:store_admin_panel/global_widgets/add_edit_product/components/middle_block/middle_block.dart';
+import 'package:store_admin_panel/global_widgets/add_edit_product/components/upper_block/upper_block.dart';
 
-class EditProductTemplate extends StatelessWidget {
-  const EditProductTemplate({required this.product, super.key});
+class AddEditProductTemplate extends StatelessWidget {
+  const AddEditProductTemplate({required this.isEdit, super.key});
 
-  final Product product;
+  final bool isEdit;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -25,9 +24,9 @@ class EditProductTemplate extends StatelessWidget {
             borderRadius: BorderRadius.circular(15)),
         child: Column(
           children: [
-            ProductNameBlock(product: product),
-            MiddleBlock(),
-            TwoButttonsBlock(),
+            UpperBlock(isEdit: isEdit),
+            MiddleBlock(isEdit: isEdit),
+            const LowerBlock(),
           ],
         ),
       ),

@@ -69,8 +69,10 @@ class AddProductController extends NavigationController {
     //collect user input to be uploaded
     String productImage = addProductModel.value.imageUrl;
     String productName = addProductModel.value.tecProductName.text;
+
     double productPrice =
         double.parse(addProductModel.value.tecProductPrice.text);
+
     String productCategory = addProductModel.value.categoryGroupValue;
     String productUnit = addProductModel.value.unitGroupValue;
     bool isOnSale = addProductModel.value.isOnSaleBoxValue;
@@ -98,6 +100,7 @@ class AddProductController extends NavigationController {
 
       //2. upload data
       Map<String, dynamic> myMap = await _collectData();
+
       FirebaseFirestore myInstance = FirebaseFirestore.instance;
       DocumentReference<Map<String, dynamic>> docRef = myInstance
           .doc('products/${addProductModel.value.tecProductName.text}');
