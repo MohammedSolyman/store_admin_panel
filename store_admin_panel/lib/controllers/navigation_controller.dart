@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/controllers/add_edit_product_page_controller.dart';
+import 'package:store_admin_panel/data_types/product.dart';
 
 class NavigationController extends AddEditProductPageController {
   void toOverview(context) {
@@ -20,16 +21,16 @@ class NavigationController extends AddEditProductPageController {
     GoRouter.of(context).go(PagesPaths.addProduct);
   }
 
-  void toEditProduct(context) {
-    GoRouter.of(context).go(PagesPaths.editProduct);
+  void toEditProduct(context, Product product) {
+    GoRouter.of(context).go(PagesPaths.editProduct, extra: product);
   }
 
-  void popupFunction(int value, BuildContext context) {
+  void popupFunction(int value, BuildContext context, Product product) {
     switch (value) {
       case 0:
         toAddProduct(context);
       case 1:
-        toEditProduct(context);
+        toEditProduct(context, product);
 
         break;
     }

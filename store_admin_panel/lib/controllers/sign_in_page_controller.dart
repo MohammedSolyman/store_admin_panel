@@ -8,7 +8,7 @@ import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/controllers/edit_product_controller.dart';
 import 'package:store_admin_panel/models/sign_in_page_model.dart';
 
-class SignInPageController extends EditProductController {
+class SignInPageController extends EditProductPageController {
   Rx<SignInPageModel> signInPageModel = SignInPageModel().obs;
 
   void _clearTec() {

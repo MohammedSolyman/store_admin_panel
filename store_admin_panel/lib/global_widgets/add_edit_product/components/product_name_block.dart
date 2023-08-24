@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:store_admin_panel/constants/constants.dart';
+import 'package:store_admin_panel/data_types/product.dart';
 import 'package:store_admin_panel/global_widgets/texts/my_text.dart';
 
 class ProductNameBlock extends StatelessWidget {
-  const ProductNameBlock({super.key});
+  const ProductNameBlock({this.product, super.key});
 
+  final Product? product;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -17,8 +19,6 @@ class ProductNameBlock extends StatelessWidget {
         SizedBox(
           height: 40,
           child: TextFormField(
-            initialValue:
-                myController.editProductPageModel.value.tecProductName.text,
             controller: myController.editProductPageModel.value.tecProductName,
             decoration: InputDecoration(
                 fillColor: Theme.of(context).primaryColor,

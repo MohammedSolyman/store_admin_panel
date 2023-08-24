@@ -13,7 +13,7 @@ PagesController
 AddEditProductPageController
 NavigationController
 AddProductController
-EditProductController
+EditProductPageController
 SignInPageController
 SignUpPageController
 
@@ -24,4 +24,4 @@ class MyContorller extends SignUpPageController {
   static MyContorller instance = Get.find<MyContorller>();
 }
 
-class EditProductController extends AddProductController {}
+class EditProductPageController extends AddProductController {}

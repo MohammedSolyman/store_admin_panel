@@ -53,7 +53,12 @@ class ProductTemplate extends StatelessWidget {
               ]),
               borderRadius: BorderRadius.circular(15),
             )),
-            const Positioned(right: 5, top: 5, child: MyPopupMenuButton()),
+            Positioned(
+                right: 5,
+                top: 5,
+                child: MyPopupMenuButton(
+                  product: myProduct,
+                )),
           ],
         ),
       ),
@@ -63,9 +68,11 @@ class ProductTemplate extends StatelessWidget {
 
 class MyPopupMenuButton extends StatelessWidget {
   const MyPopupMenuButton({
+    required this.product,
     super.key,
   });
 
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
@@ -95,7 +102,7 @@ class MyPopupMenuButton extends StatelessWidget {
         return [x, y];
       },
       onSelected: (value) {
-        myController.popupFunction(value, context);
+        myController.popupFunction(value, context, product);
       },
     );
   }
