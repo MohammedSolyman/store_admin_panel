@@ -26,7 +26,7 @@ class AddEditProductTemplate extends StatelessWidget {
           children: [
             UpperBlock(isEdit: isEdit),
             MiddleBlock(isEdit: isEdit),
-            const LowerBlock(),
+            LowerBlock(isEdit: isEdit),
           ],
         ),
       ),

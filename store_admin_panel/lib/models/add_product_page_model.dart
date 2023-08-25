@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:store_admin_panel/constants/constants.dart';
+import 'package:store_admin_panel/data_types/selected_image.dart';
 
 class AddProductModel {
   //user inpput information
@@ -12,6 +12,5 @@ class AddProductModel {
   TextEditingController tecProductPrice = TextEditingController();
 
   //selected image information
-  Uint8List? fileBytes;
-  String? imageName;
+  SelectedImage selectedImage = SelectedImage();
 }

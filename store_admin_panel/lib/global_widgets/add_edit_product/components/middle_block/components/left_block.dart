@@ -46,7 +46,7 @@ class OnSaleBlock extends StatelessWidget {
                   ? myController.editProductPageModel.value.isOnSaleBoxValue
                   : myController.addProductModel.value.isOnSaleBoxValue,
               onChanged: (bool? b) {
-                myController.changeisOnSaleBoxValue(b!);
+                myController.addChangeIsOnSaleBoxValue(b!);
               }),
           const MyText('on sale'),
         ],
@@ -75,7 +75,7 @@ class ProductMeasureUnit extends StatelessWidget {
                       ? myController.editProductPageModel.value.unitGroupValue
                       : myController.addProductModel.value.unitGroupValue,
                   onChanged: (String? s) {
-                    myController.changeGroupValue(s!);
+                    myController.addChangeGroupValue(s!);
                   }),
               const MyText('piece'),
               Radio(
@@ -84,7 +84,7 @@ class ProductMeasureUnit extends StatelessWidget {
                       ? myController.editProductPageModel.value.unitGroupValue
                       : myController.addProductModel.value.unitGroupValue,
                   onChanged: (String? s) {
-                    myController.changeGroupValue(s!);
+                    myController.addChangeGroupValue(s!);
                   }),
               const SizedBox(
                 height: 10,
@@ -115,7 +115,7 @@ class ProductCategoryBlock extends StatelessWidget {
                 ? myController.editProductPageModel.value.categoryGroupValue
                 : myController.addProductModel.value.categoryGroupValue,
             onSelected: (value) {
-              myController.changeCategoryGroupValue(value!);
+              myController.addChangeCategoryGroupValue(value!);
             },
             enableFilter: true,
             inputDecorationTheme: InputDecorationTheme(

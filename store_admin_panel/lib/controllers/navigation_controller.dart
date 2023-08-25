@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_admin_panel/constants/constants.dart';
-import 'package:store_admin_panel/controllers/add_edit_product_page_controller.dart';
+import 'package:store_admin_panel/controllers/pages_controller.dart';
 import 'package:store_admin_panel/data_types/product.dart';
 
-class NavigationController extends AddEditProductPageController {
+class NavigationController extends PagesController {
   void toOverview(context) {
     GoRouter.of(context).go(PagesPaths.overview);
   }

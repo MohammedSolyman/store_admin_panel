@@ -4,9 +4,11 @@ import 'package:store_admin_panel/global_widgets/my_button/my_button.dart';
 
 class RightBlock extends StatelessWidget {
   const RightBlock({
+    required this.isEdit,
     super.key,
   });
 
+  final bool isEdit;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -17,14 +19,18 @@ class RightBlock extends StatelessWidget {
           MyButton(
               icon: Icons.delete,
               txt: 'clear image',
-              func: myController.clearImage),
+              func: isEdit
+                  ? myController.editCLearImage
+                  : myController.addCLearImage),
           const SizedBox(
             height: 15,
           ),
           MyButton(
               icon: Icons.upload,
               txt: 'choose image',
-              func: myController.chooseImage)
+              func: isEdit
+                  ? myController.editChooseImage
+                  : myController.addChooseImage)
         ],
       ),
     );

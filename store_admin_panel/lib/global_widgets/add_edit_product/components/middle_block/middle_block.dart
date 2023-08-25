@@ -19,8 +19,8 @@ class MiddleBlock extends StatelessWidget {
           child: Row(
             children: [
               LeftBlock(isEdit: isEdit),
-              const CenterBlock(),
-              const RightBlock()
+              CenterBlock(isEdit: isEdit),
+              RightBlock(isEdit: isEdit),
             ],
           ),
         ));
