@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/controllers/sign_in_page_controller.dart';
 import 'package:store_admin_panel/models/sign_up_page_model.dart';
@@ -18,12 +20,12 @@ class SignUpPageController extends SignInPageController {
     });
   }
 
-  _sendVerificationEmail() {
+  Future<void> _sendVerificationEmail() async {
     User? user = FirebaseAuth.instance.currentUser;
-    user!.sendEmailVerification();
+    await user!.sendEmailVerification();
   }
 
-  signUpEmail({
+  Future<void> signUpEmail({
     required BuildContext context,
     required String userName,
     required String email,
@@ -84,18 +86,28 @@ class SignUpPageController extends SignInPageController {
     }
   }
 
-  signUpFunc(BuildContext context) {
+  Future<void> signUpFunc(BuildContext context) async {
     String userName = signUpPageModel.value.tecUserName.text;
     String email = signUpPageModel.value.tecEmail.text;
     String password = signUpPageModel.value.tecPassword.text;
 
-    signUpEmail(
+    await signUpEmail(
         context: context, userName: userName, email: email, password: password);
     _clearTec();
   }
 
   Future<void> signOut(BuildContext context) async {
+    //1. sign out
     await FirebaseAuth.instance.signOut();
+
+    //2. clear from get storage
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isLoggedIn', false);
+
+    // final box = GetStorage();
+    // await box.write('isLoggedIn', 'no');
+
+    //3. navogate to sgin in page
     toSignIn(context);
   }
 }

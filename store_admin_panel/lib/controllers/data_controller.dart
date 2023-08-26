@@ -40,7 +40,7 @@ class DataController extends GetxController {
     });
   }
 
-  _getPurchases() async {
+  getPurchases() async {
     FirebaseFirestore myInstance = FirebaseFirestore.instance;
 
     CollectionReference<Map<String, dynamic>> colRef =
@@ -80,12 +80,5 @@ class DataController extends GetxController {
         val.latestPurchases = val.allPurchases.sublist(1, 5);
       }
     });
-  }
-
-  @override
-  void onInit() async {
-    super.onInit();
-    await getProducts();
-    await _getPurchases();
   }
 }

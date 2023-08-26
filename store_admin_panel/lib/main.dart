@@ -8,12 +8,13 @@ import 'themes/my_themedata.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 /*
-required:
+required:-----------------
 redirection 
-edit page
 overflow problem
 categories management
 dialoges
+
+do you want to exit
 
 mohammedsolyman10@gmail.com
 123456789
@@ -36,7 +37,6 @@ void main() async {
         messagingSenderId: "400428991281",
         appId: "1:400428991281:web:9ac830de71bf9a41612610"),
   );
-
   Get.put(MyContorller());
   runApp(const MainApp());
 }

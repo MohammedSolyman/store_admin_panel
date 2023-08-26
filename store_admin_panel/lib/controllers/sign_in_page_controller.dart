@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/controllers/edit_product_controller.dart';
 import 'package:store_admin_panel/models/sign_in_page_model.dart';
@@ -18,7 +20,7 @@ class SignInPageController extends EditProductPageController {
     });
   }
 
-  signInEmail({
+  Future<void> signInEmail({
     required BuildContext context,
     required String email,
     required String password,
@@ -54,6 +56,7 @@ class SignInPageController extends EditProductPageController {
         if (credential.user!.emailVerified) {
           //  Get.back();
 
+          // navigate to overview page
           GoRouter.of(context).replace(PagesPaths.overview);
         } else {
           // Get.back();
@@ -90,10 +93,22 @@ class SignInPageController extends EditProductPageController {
     // updateCurrentUser();
   }
 
-  signInFunc(BuildContext context) {
+  Future<void> signInFunc(BuildContext context) async {
+    //1. collect information from text input forms
     String email = signInPageModel.value.tecEmail.text;
     String password = signInPageModel.value.tecPassword.text;
-    signInEmail(context: context, email: email, password: password);
+
+    //2. sign in
+    await signInEmail(context: context, email: email, password: password);
+
+    // 3. store in getStore
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isLoggedIn', true);
+
+    // final box = GetStorage();
+    // await box.write('isLoggedIn', 'looged');
+
+    //4. clear all text forms
     _clearTec();
   }
 
@@ -121,8 +136,18 @@ class SignInPageController extends EditProductPageController {
     return userCredential;
   }
 
-  signInGoogleFunc(BuildContext context) async {
+  Future<void> signInGoogleFunc(BuildContext context) async {
+    //1. sign in
     await _signInGoogle();
+
+    // 2. store in getStore
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isLoggedIn', true);
+
+    // final box = GetStorage();
+    // await box.write('isLoggedIn', 'logged');
+
+    //3. navigate to overview page
     GoRouter.of(context).replace(PagesPaths.overview);
   }
 }

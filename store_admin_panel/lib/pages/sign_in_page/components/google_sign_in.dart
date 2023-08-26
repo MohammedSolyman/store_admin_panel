@@ -8,8 +8,8 @@ class GoogleSignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        myController.signInGoogleFunc(context);
+      onTap: () async {
+        await myController.signInGoogleFunc(context);
       },
       child: Row(
         children: [

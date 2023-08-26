@@ -35,8 +35,8 @@ class SignInPage extends StatelessWidget {
                 const MyLine(),
                 const MySizedBox(),
                 ElevatedButton(
-                    onPressed: () {
-                      myController.signInFunc(context);
+                    onPressed: () async {
+                      await myController.signInFunc(context);
                     },
                     child: const Text('sign in as an admin')),
                 const MySizedBox(),
