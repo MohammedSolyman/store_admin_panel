@@ -9,7 +9,8 @@ import 'package:url_strategy/url_strategy.dart';
 
 /*
 required:-----------------
-redirection 
+include product id
+generate random num for images
 overflow problem
 categories management
 dialoges

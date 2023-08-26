@@ -43,4 +43,8 @@ class NavigationController extends PagesController {
   void toSignIn(context) {
     GoRouter.of(context).go(PagesPaths.signInPage);
   }
+
+  void toBack(context) {
+    GoRouter.of(context).pop();
+  }
 }

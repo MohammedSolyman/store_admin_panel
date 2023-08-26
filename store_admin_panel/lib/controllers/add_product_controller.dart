@@ -9,6 +9,8 @@ import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/controllers/navigation_controller.dart';
 import 'package:store_admin_panel/data_types/product.dart';
 import 'package:store_admin_panel/data_types/selected_image.dart';
+import 'package:store_admin_panel/global_widgets/dialoges/show_my_dialoge.dart';
+import 'package:store_admin_panel/global_widgets/dialoges/show_waiting.dart';
 import 'package:store_admin_panel/models/add_product_page_model.dart';
 
 class AddProductController extends NavigationController {
@@ -119,6 +121,8 @@ class AddProductController extends NavigationController {
     // if the user has chosen an image, upload the image then upload the data,and clear all data
     // if not,ask the user to upload the image first.
     if (addIsImageCHoosen()) {
+      await showWaiting(context: context);
+
       //1. upload image
       await _addCollectUploudImage();
 
@@ -146,27 +150,23 @@ class AddProductController extends NavigationController {
       dataModel.value.latestProducts.removeLast();
 
       //6. notify the user that the product was succesfully added
-      AlertDialog x = const AlertDialog(
-        content: Text('the product was succesfully added'),
-      );
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return x;
-          });
+
+      // await showMyDialoge(
+      //     context: context,
+      //     col: Colors.green.withOpacity(0.75),
+      //     title: 'done',
+      //     content: 'the product was succesfully added');
 
       //7. navigate to all products
       toAllProducts(context);
     } else {
       //ask the user to upload the image first.
-      AlertDialog x = const AlertDialog(
-        content: Text('choose an image first'),
-      );
-      showDialog(
+      await showMyDialoge(
           context: context,
-          builder: (BuildContext context) {
-            return x;
-          });
+          col: Colors.red.withOpacity(0.75),
+          title: 'sorry',
+          content: 'choose an image first');
     }
+    // toBack(context);
   }
 }

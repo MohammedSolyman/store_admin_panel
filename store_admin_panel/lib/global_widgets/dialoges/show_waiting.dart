@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-showWaiting() {
-  Get.dialog(const Center(
-      child: SizedBox(
-          height: 100, width: 100, child: CircularProgressIndicator())));
+Future<void> showWaiting({required BuildContext context}) async {
+  AlertDialog x = AlertDialog(
+    content: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: const Center(child: CircularProgressIndicator())),
+    backgroundColor: Colors.grey.withOpacity(0.5),
+  );
+
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return x;
+      });
 }

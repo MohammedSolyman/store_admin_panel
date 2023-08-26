@@ -1,11 +1,15 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/controllers/add_product_controller.dart';
 import 'package:store_admin_panel/data_types/product.dart';
 import 'package:store_admin_panel/data_types/selected_image.dart';
+import 'package:store_admin_panel/global_widgets/dialoges/show_my_dialoge.dart';
+import 'package:store_admin_panel/global_widgets/dialoges/show_waiting.dart';
+import 'package:store_admin_panel/global_widgets/texts/my_text.dart';
 import 'package:store_admin_panel/models/edit_product_page_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,7 +17,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class EditProductPageController extends AddProductController {
   Rx<EditProductPageModel> editProductPageModel = EditProductPageModel().obs;
 
-  manipulateEditProperties(Product? product) {
+  void manipulateEditProperties(Product? product) {
     //this function wil be called once EditProductPage() will be called.
     if (product != null) {
       editProductPageModel.update((val) async {
@@ -29,19 +33,19 @@ class EditProductPageController extends AddProductController {
     }
   }
 
-  editChangeGroupValue(String newValue) {
+  void editChangeGroupValue(String newValue) {
     editProductPageModel.update((val) {
       val!.unitGroupValue = newValue;
     });
   }
 
-  editChangeIsOnSaleBoxValue(bool newValue) {
+  void editChangeIsOnSaleBoxValue(bool newValue) {
     editProductPageModel.update((val) {
       val!.isOnSaleBoxValue = newValue;
     });
   }
 
-  editChangeCategoryGroupValue(String newValue) {
+  void editChangeCategoryGroupValue(String newValue) {
     editProductPageModel.update((val) {
       val!.categoryGroupValue = newValue;
     });
@@ -69,7 +73,7 @@ class EditProductPageController extends AddProductController {
     });
   }
 
-  editChooseImage() async {
+  Future<void> editChooseImage() async {
     //1. remove the original image first
     editCLearImage();
 
@@ -84,7 +88,7 @@ class EditProductPageController extends AddProductController {
     }
   }
 
-  Future<void> _deleteImage() async {
+  Future<void> _deleteImage(BuildContext context) async {
     String imageUrl = editProductPageModel.value.imageUrl;
 
     try {
@@ -93,11 +97,15 @@ class EditProductPageController extends AddProductController {
       Reference imageRef = instance.refFromURL(imageUrl);
       await imageRef.delete();
     } catch (e) {
-      print('error dialog $e');
+      await showMyDialoge(
+          context: context,
+          col: Colors.red.withOpacity(0.75),
+          title: 'error',
+          content: e.toString());
     }
   }
 
-  _deleteData() async {
+  Future<void> _deleteData(BuildContext context) async {
     String productOriginalName = editProductPageModel.value.productOriginalName;
 
     try {
@@ -108,7 +116,11 @@ class EditProductPageController extends AddProductController {
 
       decRef.delete();
     } catch (e) {
-      print('error dialog $e');
+      await showMyDialoge(
+          context: context,
+          col: Colors.red.withOpacity(0.75),
+          title: 'error',
+          content: e.toString());
     }
   }
 
@@ -118,16 +130,15 @@ class EditProductPageController extends AddProductController {
         editProductPageModel.value.selectedImage.imageBaseName != null;
   }
 
-  _editCollectUploudImage() async {
-    //if the user has selected an image, upload it to firebase,
-
+  Future<void> _editCollectUploudImage(BuildContext context) async {
+    //1. if the user has selected an image, upload it to firebase,
     if (editIsImageCHoosen()) {
-      //collect image data
+      //1.1 collect image data
       Uint8List? fileBytes = editProductPageModel.value.selectedImage.fileBytes;
       String? imageName =
           editProductPageModel.value.selectedImage.imageBaseName;
 
-//upload image
+      //1.2 upload image
       FirebaseStorage myInstance = FirebaseStorage.instance;
       Reference myRef = myInstance.ref('images/$imageName');
       await myRef.putData(fileBytes!);
@@ -135,6 +146,13 @@ class EditProductPageController extends AddProductController {
       editProductPageModel.update((val) {
         val!.imageUrl = url;
       });
+    } else {
+      //2. if the user has not selected an image ask him to upload the image first.
+      await showMyDialoge(
+          context: context,
+          col: Colors.red.withOpacity(0.75),
+          title: 'sorry',
+          content: 'choose an image first');
     }
   }
 
@@ -163,40 +181,67 @@ class EditProductPageController extends AddProductController {
     return productModel.toMap();
   }
 
-  editEditFunc(BuildContext context) async {
-    //1. ask user confirmation
+  Future<void> askToEdit(BuildContext context) async {
+    AlertDialog x = AlertDialog(
+      content: const MyText('Do you want to update product'),
+      actions: [
+        ElevatedButton(
+            onPressed: () {
+              toBack(context);
+            },
+            child: const Text('cancel')),
+        ElevatedButton(
+            onPressed: () {
+              toBack(context);
+              editEditFunc(context);
+            },
+            child: const Text('ok')),
+      ],
+    );
 
-//2. delete the original image from firestorage, if the user updated the original image.
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return x;
+        });
+  }
 
+  Future<void> editEditFunc(BuildContext context) async {
+    //1. show waiting progress indicator
+    await showWaiting(context: context);
+
+    // 2. If the user has changed the original image, upload the new one.
     if (editProductPageModel.value.changeOriginalImage) {
-      await _deleteImage();
+      // dont't delete the original image, beacause if someone bought this product
+      //we will npt be able to display it in orders template.
+      // await _deleteImage(context);
+
+      //collect and  uplaud the new image to firestorage
+      await _editCollectUploudImage(context);
     }
 
-//3. collectand  uplaud the new image to firestorage
-    await _editCollectUploudImage();
-
-//4.1 collect product
+    //3. collect product data
     Map<String, dynamic> myMap = await _editCollectData();
 
-//4.2 edit product
-
+    //4 edit product data
     FirebaseFirestore myInstance = FirebaseFirestore.instance;
     DocumentReference<Map<String, dynamic>> docRef = myInstance
         .doc('products/${editProductPageModel.value.tecProductName.text}');
-    docRef.set(myMap, SetOptions(merge: true));
+    await docRef.set(myMap, SetOptions(merge: true));
 
-    //3. clear image and data
+    //5. clear image and data fields
     editCLearImage();
     _editClearData();
 
     //6. update data
     await getProducts();
 
-    //7. navigate to
+    //7. navigate to all products page
     toAllProducts(context);
   }
 
-  editDeleteFunc(BuildContext context) async {
+  Future<void> editDeleteFunc(BuildContext context) async {
+    await showWaiting(context: context);
 //1. ask user confirmation
 
 //2. delete the image
@@ -208,8 +253,12 @@ purchase template will need the image of this product,
 
     //3. delete the
 
-    await _deleteData();
-
+    await _deleteData(context);
+    // await showMyDialoge(
+    //     context: context,
+    //     col: Colors.green.withOpacity(0.75),
+    //     title: 'done',
+    //     content: 'the product was deleted succesfully');
     //4. update data
     await getProducts();
 

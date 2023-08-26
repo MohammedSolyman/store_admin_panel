@@ -1,4 +1,3 @@
-import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/data_types/product.dart';

@@ -29,7 +29,7 @@ class LowerBlock extends StatelessWidget {
           icon: Icons.upload,
           txt: isEdit ? 'edit' : 'upload',
           contextFunc:
-              isEdit ? myController.editEditFunc : myController.addUploadFunc,
+              isEdit ? myController.askToEdit : myController.addUploadFunc,
         ),
       ],
     ));
