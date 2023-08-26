@@ -154,6 +154,9 @@ class AddProductController extends NavigationController {
           builder: (BuildContext context) {
             return x;
           });
+
+      //7. navigate to all products
+      toAllProducts(context);
     } else {
       //ask the user to upload the image first.
       AlertDialog x = const AlertDialog(

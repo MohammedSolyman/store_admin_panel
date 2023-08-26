@@ -17,17 +17,18 @@ class LowerBlock extends StatelessWidget {
       children: [
         Visibility(
             visible: isEdit,
-            child: MyButton(
-                icon: Icons.delete,
-                txt: 'delete',
-                func: myController.editDeleteProduct)),
+            child: MyButtonAsync(
+              icon: Icons.delete,
+              txt: 'delete',
+              contextFunc: myController.editDeleteFunc,
+            )),
         const SizedBox(
           width: 20,
         ),
-        MyButton(
+        MyButtonAsync(
           icon: Icons.upload,
           txt: isEdit ? 'edit' : 'upload',
-          func:
+          contextFunc:
               isEdit ? myController.editUploadFunc : myController.addUploadFunc,
         ),
       ],

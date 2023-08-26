@@ -4,6 +4,7 @@ import 'package:store_admin_panel/data_types/selected_image.dart';
 
 class EditProductPageModel {
   //user inpput information
+  String productOriginalName = '';
   String unitGroupValue = Unit.kilo;
   String categoryGroupValue = "";
   bool isOnSaleBoxValue = false;

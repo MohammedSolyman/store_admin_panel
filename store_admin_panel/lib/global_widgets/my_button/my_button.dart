@@ -25,3 +25,28 @@ class MyButton extends StatelessWidget {
         ));
   }
 }
+
+class MyButtonAsync extends StatelessWidget {
+  const MyButtonAsync({
+    required this.icon,
+    required this.txt,
+    required this.contextFunc,
+    super.key,
+  });
+
+  final IconData icon;
+  final String txt;
+  //final Function? func;
+  final Function(BuildContext context) contextFunc;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () async {
+          contextFunc(context);
+        },
+        child: Row(
+          children: [Icon(icon), Text(txt)],
+        ));
+  }
+}
