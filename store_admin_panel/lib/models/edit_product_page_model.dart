@@ -12,6 +12,7 @@ class EditProductPageModel {
   TextEditingController tecProductName = TextEditingController();
   TextEditingController tecProductPrice = TextEditingController();
   bool changeOriginalImage = false;
+  int createdOn = 0;
 
   //selected image information
   SelectedImage selectedImage = SelectedImage();

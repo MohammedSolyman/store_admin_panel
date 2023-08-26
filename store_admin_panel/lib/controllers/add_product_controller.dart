@@ -122,7 +122,7 @@ class AddProductController extends NavigationController {
       //1. upload image
       await _addCollectUploudImage();
 
-      //2.1 cleect data
+      //2.1 collect data
       Map<String, dynamic> myMap = await _addCollectData();
 
       //2.2 upload data
