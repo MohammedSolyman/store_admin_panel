@@ -1,17 +1,19 @@
 import 'package:store_admin_panel/constants/constants.dart';
 
 class Product {
-  String productName = "";
+  String? productId = '';
+  String productName = '';
   double productPrice = 0;
   String productUnit = Unit.kilo;
   String productCategory = Category.grains;
   bool isOnSale = false;
-  String productImage = "";
+  String productImage = '';
   int createdOn = 0;
   int lastModifiedOn = 0;
 
   Product(
-      {required this.productName,
+      {this.productId,
+      required this.productName,
       required this.productPrice,
       required this.productUnit,
       required this.productCategory,

@@ -72,7 +72,7 @@ class AddProductController extends NavigationController {
         addProductModel.value.selectedImage.imageBaseName != null;
   }
 
-  _addCollectUploudImage() async {
+  Future<void> _addCollectUploudImage() async {
     //if the user has selected an image, upload it to firebase,
 
     if (addIsImageCHoosen()) {
@@ -131,9 +131,9 @@ class AddProductController extends NavigationController {
 
       //2.2 upload data
       FirebaseFirestore myInstance = FirebaseFirestore.instance;
-      DocumentReference<Map<String, dynamic>> docRef = myInstance
-          .doc('products/${addProductModel.value.tecProductName.text}');
-      docRef.set(myMap);
+      CollectionReference<Map<String, dynamic>> colRef =
+          myInstance.collection('products');
+      colRef.add(myMap);
 
       //3. clear image and data
       addCLearImage();

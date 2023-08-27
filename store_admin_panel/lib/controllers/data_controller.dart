@@ -7,7 +7,7 @@ import 'package:store_admin_panel/models/data_model.dart';
 class DataController extends GetxController {
   Rx<DataModel> dataModel = DataModel().obs;
 
-  getProducts() async {
+  Future<void> getProducts() async {
     FirebaseFirestore myInstance = FirebaseFirestore.instance;
 
     CollectionReference<Map<String, dynamic>> colRef =
@@ -23,9 +23,8 @@ class DataController extends GetxController {
 
     for (var element in myList) {
       Map<String, dynamic> myMap = element.data();
-
       Product product = Product.fromMap(myMap);
-
+      product.productId = element.id;
       x.add(product);
     }
 
@@ -40,7 +39,7 @@ class DataController extends GetxController {
     });
   }
 
-  getPurchases() async {
+  Future<void> getPurchases() async {
     FirebaseFirestore myInstance = FirebaseFirestore.instance;
 
     CollectionReference<Map<String, dynamic>> colRef =

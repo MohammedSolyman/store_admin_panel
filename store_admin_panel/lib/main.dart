@@ -9,11 +9,14 @@ import 'package:url_strategy/url_strategy.dart';
 
 /*
 required:----------------------
-include product id
 generate random num for images
 overflow problem
 do you want to exit in user app
 
+══╡ EXCEPTION CAUGHT BY IMAGE RESOURCE SERVICE ╞════════════════════════════════════════════════════The following ImageCodecException was thrown resolving an image codec:
+Failed to detect image file format using the file header.
+File header was [0x3c 0x21 0x44 0x4f 0x43 0x54 0x59 0x50 0x45 0x20].
+Image source: encoded image bytes
 
 
 

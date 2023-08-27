@@ -29,6 +29,7 @@ class EditProductPageController extends AddProductController {
         val.isOnSaleBoxValue = product.isOnSale;
         val.imageUrl = product.productImage;
         val.createdOn = product.createdOn;
+        val.productId = product.productId!;
       });
     }
   }
@@ -70,6 +71,9 @@ class EditProductPageController extends AddProductController {
       val.tecProductName.text = '';
       val.tecProductPrice.text = '';
       val.createdOn = 0;
+      val.productId = '';
+      val.productOriginalName = '';
+      val.changeOriginalImage = false;
     });
   }
 
@@ -106,15 +110,15 @@ class EditProductPageController extends AddProductController {
   // }
 
   Future<void> _deleteData(BuildContext context) async {
-    String productOriginalName = editProductPageModel.value.productOriginalName;
+    String productId = editProductPageModel.value.productId;
 
     try {
       FirebaseFirestore instance = FirebaseFirestore.instance;
 
       DocumentReference<Map<String, dynamic>> decRef =
-          instance.doc('products/$productOriginalName');
+          instance.doc('products/$productId');
 
-      decRef.delete();
+      await decRef.delete();
     } catch (e) {
       await showMyDialoge(
           context: context,
@@ -224,9 +228,11 @@ class EditProductPageController extends AddProductController {
     Map<String, dynamic> myMap = await _editCollectData();
 
     //4 edit product data
+    String productId = editProductPageModel.value.productId;
+
     FirebaseFirestore myInstance = FirebaseFirestore.instance;
-    DocumentReference<Map<String, dynamic>> docRef = myInstance
-        .doc('products/${editProductPageModel.value.tecProductName.text}');
+    DocumentReference<Map<String, dynamic>> docRef =
+        myInstance.doc('products/$productId');
     await docRef.set(myMap, SetOptions(merge: true));
 
     //5. clear image and data fields
@@ -261,6 +267,10 @@ purchase template will need the image of this product,
     //     content: 'the product was deleted succesfully');
     //4. update data
     await getProducts();
+
+    //5. clear image and data fields
+    editCLearImage();
+    _editClearData();
 
     //5. navigate to
     toAllProducts(context);

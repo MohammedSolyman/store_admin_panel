@@ -11,8 +11,11 @@ class EditProductPageModel {
   String imageUrl = "";
   TextEditingController tecProductName = TextEditingController();
   TextEditingController tecProductPrice = TextEditingController();
+
+  //helping information
   bool changeOriginalImage = false;
   int createdOn = 0;
+  String productId = '';
 
   //selected image information
   SelectedImage selectedImage = SelectedImage();
