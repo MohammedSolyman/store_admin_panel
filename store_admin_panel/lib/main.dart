@@ -14,6 +14,7 @@ generate random num for images
 overflow problem
 categories management
 dialoges
+resend verification email
 
 do you want to exit
 

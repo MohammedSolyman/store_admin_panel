@@ -7,12 +7,15 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/controllers/edit_product_controller.dart';
+import 'package:store_admin_panel/global_widgets/dialoges/show_my_dialoge.dart';
+import 'package:store_admin_panel/global_widgets/dialoges/show_waiting.dart';
 import 'package:store_admin_panel/models/sign_in_page_model.dart';
 
 class SignInPageController extends EditProductPageController {
   Rx<SignInPageModel> signInPageModel = SignInPageModel().obs;
 
   void _clearTec() {
+    // clear text fields
     signInPageModel.update((val) {
       val!.tecEmail.text = '';
       val.tecPassword.text = '';
@@ -24,17 +27,19 @@ class SignInPageController extends EditProductPageController {
     required String email,
     required String password,
   }) async {
-    // showWaiting();
+    // 1. showWaiting();
+    await showWaiting(context: context);
 
+    //2. trying signing in
     final UserCredential credential;
-
     try {
       credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+      //3 in case of successful signing in.
 
-      //check if this user is an admin
+      //3.1 check if this user is an admin
       String thisUserId = FirebaseAuth.instance.currentUser!.uid;
 
       QuerySnapshot<Map<String, dynamic>> qSS =
@@ -45,51 +50,58 @@ class SignInPageController extends EditProductPageController {
         idList.add(element.data()['id']);
       }
 
-      //   myList.forEach((QueryDocumentSnapshot<Map<String, dynamic>> element) {
-      //   idList.add(element.data()['id']);
-      // });
-
       if (idList.contains(thisUserId)) {
-        //proceed:
-
+        //3.2 in case of admin account
+        //3.3 check if this user verified his email.
         if (credential.user!.emailVerified) {
-          //  Get.back();
+          //3.4 in case of verified his email
+          //3.5 stop the waiting dialog.
+          toBack(context);
 
-          // navigate to overview page
+          //3.6 navigate to overview page
           GoRouter.of(context).replace(PagesPaths.overview);
         } else {
-          // Get.back();
+          //3.3 in case of unverified email
+          //3.4 stop the waiting dialog
+          toBack(context);
 
-          // showMyDialoge(
-          //     context: context,
-          //     col: Colors.orange,
-          //     title: 'Unverified user',
-          //     content: 'please go to your eamil to activate your account.');
+          //3.5 show a warning dialog.
+          await showMyDialoge(
+              context: context,
+              col: Colors.red.withOpacity(0.75),
+              title: 'sorry',
+              content: 'please go to your eamil to activate your account.');
         }
-        // sign out if this user is not an admin
       } else {
+        //if the user is not admin sign out if this user as he is not an admin
         await FirebaseAuth.instance.signOut();
       }
     } on FirebaseAuthException catch (e) {
+      //in case of unsuccessful singing in
       if (e.code == 'user-not-found') {
-        // Get.back();
+        //1. if the user is not found
+        //1.1 stop the waiting dialog
+        toBack(context);
 
-        // showMyDialoge(
-        //     context: context,
-        //     col: Colors.orange,
-        //     title: 'user-not-found',
-        //     content: 'enter the correct user');
+//1.2 show a warning dialog.
+        await showMyDialoge(
+            context: context,
+            col: Colors.red.withOpacity(0.75),
+            title: 'sorry',
+            content: 'enter the correct user.');
       } else if (e.code == 'wrong-password') {
-        // Get.back();
-        // showMyDialoge(
-        //     context: context,
-        //     col: Colors.orange,
-        //     title: 'Wrong password',
-        //     content: 'enter the correct pasword');
+        //2. in case of wrong password
+        //2.1 stop the waiting dialog
+        toBack(context);
+
+        //2.2 show a warning dialog.
+        await showMyDialoge(
+            context: context,
+            col: Colors.red.withOpacity(0.75),
+            title: 'sorry',
+            content: 'enter the correct pasword.');
       }
     }
-
-    // updateCurrentUser();
   }
 
   Future<void> signInFunc(BuildContext context) async {
@@ -100,18 +112,18 @@ class SignInPageController extends EditProductPageController {
     //2. sign in
     await signInEmail(context: context, email: email, password: password);
 
-    // 3. store in getStore
+    //3. store in getStore
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('isLoggedIn', true);
-
-    // final box = GetStorage();
-    // await box.write('isLoggedIn', 'looged');
 
     //4. clear all text forms
     _clearTec();
   }
 
-  Future<UserCredential> _signInGoogle() async {
+  Future<UserCredential> _signInGoogle(BuildContext context) async {
+    //1. show waiting dialog
+    await showWaiting(context: context);
+
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -137,14 +149,11 @@ class SignInPageController extends EditProductPageController {
 
   Future<void> signInGoogleFunc(BuildContext context) async {
     //1. sign in
-    await _signInGoogle();
+    await _signInGoogle(context);
 
     // 2. store in getStore
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('isLoggedIn', true);
-
-    // final box = GetStorage();
-    // await box.write('isLoggedIn', 'logged');
 
     //3. navigate to overview page
     GoRouter.of(context).replace(PagesPaths.overview);

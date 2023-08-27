@@ -88,22 +88,22 @@ class EditProductPageController extends AddProductController {
     }
   }
 
-  Future<void> _deleteImage(BuildContext context) async {
-    String imageUrl = editProductPageModel.value.imageUrl;
+  // Future<void> _deleteImage(BuildContext context) async {
+  //   String imageUrl = editProductPageModel.value.imageUrl;
 
-    try {
-      FirebaseStorage instance = FirebaseStorage.instance;
+  //   try {
+  //     FirebaseStorage instance = FirebaseStorage.instance;
 
-      Reference imageRef = instance.refFromURL(imageUrl);
-      await imageRef.delete();
-    } catch (e) {
-      await showMyDialoge(
-          context: context,
-          col: Colors.red.withOpacity(0.75),
-          title: 'error',
-          content: e.toString());
-    }
-  }
+  //     Reference imageRef = instance.refFromURL(imageUrl);
+  //     await imageRef.delete();
+  //   } catch (e) {
+  //     await showMyDialoge(
+  //         context: context,
+  //         col: Colors.red.withOpacity(0.75),
+  //         title: 'error',
+  //         content: e.toString());
+  //   }
+  // }
 
   Future<void> _deleteData(BuildContext context) async {
     String productOriginalName = editProductPageModel.value.productOriginalName;
