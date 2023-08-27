@@ -120,42 +120,54 @@ class SignInPageController extends EditProductPageController {
     _clearTec();
   }
 
-  Future<UserCredential> _signInGoogle(BuildContext context) async {
+  Future<void> _signInGoogle(BuildContext context) async {
     //1. show waiting dialog
     await showWaiting(context: context);
 
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
 
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
 
-    // Once signed in, return the UserCredential
+      // Once signed in, return the UserCredential
 
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithCredential(credential);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
 
-    //updateCurrentUser();
+      // 2. store in getStore
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('isLoggedIn', true);
 
-    return userCredential;
+      //stop waiting dialog.
+      toBack(context);
+
+      //navigate to overview page
+      toOverview(context);
+
+      //return userCredential;
+    } catch (e) {
+      //stop waiting dialog.
+      toBack(context);
+
+      await showMyDialoge(
+          context: context,
+          col: Colors.red.withOpacity(0.75),
+          title: 'sorry',
+          content: e.toString());
+    }
   }
 
   Future<void> signInGoogleFunc(BuildContext context) async {
     //1. sign in
     await _signInGoogle(context);
-
-    // 2. store in getStore
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('isLoggedIn', true);
-
-    //3. navigate to overview page
-    GoRouter.of(context).replace(PagesPaths.overview);
   }
 }

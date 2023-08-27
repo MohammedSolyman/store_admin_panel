@@ -57,7 +57,7 @@ class SignUpPageController extends SignInPageController {
             .collection('admin')
             .add({'id': credential.user!.uid});
 
-//3.4 stop the waiting dialog.
+        //3.4 stop the waiting dialog.
         toBack(context);
 
         //3.5 go to sign in page.
@@ -131,7 +131,10 @@ class SignUpPageController extends SignInPageController {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('isLoggedIn', false);
 
-    //4. navogate to sgin in page
+    //4. stop waiting dialog.
+    toBack(context);
+
+    //5. navigate to sgin in page
     toSignIn(context);
   }
 }

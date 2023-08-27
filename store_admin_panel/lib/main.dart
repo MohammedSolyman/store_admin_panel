@@ -8,21 +8,28 @@ import 'themes/my_themedata.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 /*
-required:-----------------
+required:----------------------
 include product id
 generate random num for images
 overflow problem
+do you want to exit in user app
+
+
+
+
+to be adde later---------------
+search feature
 categories management
-dialoges
 resend verification email
 
-do you want to exit
 
+
+user-----------------------------
 mohammedsolyman10@gmail.com
 123456789
 
 
-admin
+admin-------------------------------
 mohammed_solyman25@yahoo.com   123456789
 
 git push https://github.com/MohammedSolyman/store_admin_panel.git master
