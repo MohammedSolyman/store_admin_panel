@@ -12,6 +12,7 @@ import 'package:store_admin_panel/data_types/selected_image.dart';
 import 'package:store_admin_panel/global_widgets/dialoges/show_my_dialoge.dart';
 import 'package:store_admin_panel/global_widgets/dialoges/show_waiting.dart';
 import 'package:store_admin_panel/models/add_product_page_model.dart';
+import 'dart:math';
 
 class AddProductController extends NavigationController {
   Rx<AddProductModel> addProductModel = AddProductModel().obs;
@@ -78,8 +79,10 @@ class AddProductController extends NavigationController {
     if (addIsImageCHoosen()) {
       //collect image data
       Uint8List? fileBytes = addProductModel.value.selectedImage.fileBytes;
-      String? imageName = addProductModel.value.selectedImage.imageBaseName;
+      String? imageBaseName = addProductModel.value.selectedImage.imageBaseName;
 
+      int random = Random().nextInt(10000);
+      String? imageName = '$random$imageBaseName';
 //upload image
       FirebaseStorage myInstance = FirebaseStorage.instance;
       Reference myRef = myInstance.ref('images/$imageName');
