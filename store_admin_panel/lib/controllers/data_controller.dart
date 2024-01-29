@@ -1,5 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:go_router/go_router.dart';
+import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/data_types/product.dart';
 import 'package:store_admin_panel/data_types/purchase.dart';
 import 'package:store_admin_panel/models/data_model.dart';
@@ -78,6 +81,36 @@ class DataController extends GetxController {
       } else {
         val.latestPurchases = val.allPurchases.sublist(1, 5);
       }
+    });
+  }
+
+  void searchItems(String query) {
+    List<Product> matchedProducts = dataModel.value.allProducts
+        .where((Product product) =>
+            product.productName.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+
+    dataModel.update((val) {
+      val!.searchedProducts = matchedProducts;
+    });
+  }
+
+  void fromSearchToEdit(BuildContext context, {Product? product}) {
+    if (product == null) {
+      if (dataModel.value.searchedProducts.isNotEmpty) {
+        Product product = dataModel.value.searchedProducts.first;
+        GoRouter.of(context).go(PagesPaths.editProduct, extra: product);
+        _resetSearchQuery();
+      }
+    } else {
+      GoRouter.of(context).go(PagesPaths.editProduct, extra: product);
+      _resetSearchQuery();
+    }
+  }
+
+  void _resetSearchQuery() {
+    dataModel.update((val) {
+      val!.searchedProducts = [];
     });
   }
 }
