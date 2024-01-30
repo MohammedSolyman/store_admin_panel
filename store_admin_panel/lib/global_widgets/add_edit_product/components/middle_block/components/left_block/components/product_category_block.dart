@@ -32,6 +32,8 @@ class ProductCategoryBlock extends StatelessWidget {
                 List.generate(Category.categoryList.length, (index) {
               return DropdownMenuEntry(
                   style: ButtonStyle(
+                      textStyle: const MaterialStatePropertyAll(
+                          TextStyle(fontSize: 11)),
                       backgroundColor: MaterialStatePropertyAll(
                           Theme.of(context).primaryColor)),
                   value: Category.categoryList[index],

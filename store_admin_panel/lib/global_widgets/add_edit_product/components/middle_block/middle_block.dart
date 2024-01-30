@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_admin_panel/global_widgets/add_edit_product/components/middle_block/components/center_block.dart';
-import 'package:store_admin_panel/global_widgets/add_edit_product/components/middle_block/components/left_block.dart';
+import 'package:store_admin_panel/global_widgets/add_edit_product/components/middle_block/components/left_block/left_block.dart';
 import 'package:store_admin_panel/global_widgets/add_edit_product/components/middle_block/components/right_block.dart';
 
 class MiddleBlock extends StatelessWidget {

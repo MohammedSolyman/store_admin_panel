@@ -35,7 +35,7 @@ mohammedsolyman10@gmail.com
 admin-------------------------------
 mohammed_solyman25@yahoo.com   123456789
 
-git push https://github.com/MohammedSolyman/store_admin_panel.git master
+git push https://github.com/MohammedSolyman/store_admin_panel.git main
 */
 void main() async {
   setPathUrlStrategy();

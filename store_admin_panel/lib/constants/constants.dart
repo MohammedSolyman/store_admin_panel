@@ -37,12 +37,32 @@ class Category {
   static const String grains = "grains";
   static const String fruits = "fruits";
   static const String vegetables = "vegetables";
-  static const String dairy = "dairy";
+  static const String dairy = "Dairy";
+  static const String beverages = "Beverages";
+  static const String bakery = "Bakery";
+  static const String cannedGoods = "Canned Goods";
+  static const String dryGoods = "Dry Goods";
+  static const String frozen = "Frozen";
+  static const String meat = "Meat";
+  static const String cleaners = "Cleaners";
+  static const String paperGoods = "Paper Goods";
+  static const String personalCare = "Personal Care";
+  static const String other = "Other";
 
   static const List<String> categoryList = [
-    Category.dairy,
+    Category.grains,
     Category.fruits,
     Category.vegetables,
-    Category.grains
+    Category.dairy,
+    Category.beverages,
+    Category.bakery,
+    Category.cannedGoods,
+    Category.dryGoods,
+    Category.frozen,
+    Category.meat,
+    Category.cleaners,
+    Category.paperGoods,
+    Category.personalCare,
+    Category.other,
   ];
 }
