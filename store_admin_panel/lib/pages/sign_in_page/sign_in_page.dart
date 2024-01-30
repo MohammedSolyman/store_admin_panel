@@ -39,9 +39,9 @@ class SignInPage extends StatelessWidget {
                       await myController.signInFunc(context);
                     },
                     child: const Text('sign in as an admin')),
-                const MySizedBox(),
-                const MySizedBox(),
-                const GoogleSignIn()
+                // const MySizedBox(),
+                // const MySizedBox(),
+                // const GoogleSignIn()
               ],
             ),
           ),
