@@ -15,7 +15,7 @@ class MiddleBlock extends StatelessWidget {
     return Expanded(
         flex: 3,
         child: Container(
-          decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+          //  decoration: BoxDecoration(border: Border.all(color: Colors.black)),
           child: Row(
             children: [
               LeftBlock(isEdit: isEdit),
