@@ -13,7 +13,11 @@ class PurchaseTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int intTime = purchase.purchaseTime;
-    DateTime time = DateTime.fromMillisecondsSinceEpoch(intTime);
+    DateTime rowTime = DateTime.fromMillisecondsSinceEpoch(intTime);
+    List<String> timeList = rowTime.toString().split(' ');
+    String date = timeList[0];
+    String time = timeList[1].split('.')[0];
+
     return Row(
       children: [
         Container(
@@ -28,7 +32,7 @@ class PurchaseTemplate extends StatelessWidget {
             isThreeLine: true,
             title: MyTitle(purchase.product!.productName),
             subtitle: MyText(
-                '\$${purchase.totalPrice}  \n${time.toString()}  \nuser id: ${purchase.userId}'),
+                '\$${purchase.totalPrice}  \n$date  \n$time  \nuser id: ${purchase.userId}'),
           ),
         ),
       ],
