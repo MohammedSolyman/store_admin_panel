@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_admin_panel/constants/constants.dart';
 
 class MyLogo extends StatelessWidget {
   const MyLogo({
@@ -9,7 +10,7 @@ class MyLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200,
-      child: Image.asset('store.png'),
+      child: Image.asset(AssetsPaths.logo),
     );
   }
 }

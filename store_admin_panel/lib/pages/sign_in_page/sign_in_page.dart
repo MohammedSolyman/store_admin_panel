@@ -3,7 +3,6 @@ import 'package:store_admin_panel/constants/constants.dart';
 import 'package:store_admin_panel/global_widgets/my_form/my_form.dart';
 import 'package:store_admin_panel/global_widgets/my_logo/my_logo.dart';
 import 'package:store_admin_panel/global_widgets/my_sized_box/my_sized_box.dart';
-import 'package:store_admin_panel/pages/sign_in_page/components/google_sign_in.dart';
 import 'package:store_admin_panel/pages/sign_in_page/components/my_line.dart';
 
 class SignInPage extends StatelessWidget {

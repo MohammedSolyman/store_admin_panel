@@ -66,3 +66,7 @@ class Category {
     Category.other,
   ];
 }
+
+class AssetsPaths {
+  static const String logo = 'assets/images/store.png';
+}

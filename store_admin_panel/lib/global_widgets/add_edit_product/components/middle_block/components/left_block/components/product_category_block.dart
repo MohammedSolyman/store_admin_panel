@@ -20,7 +20,11 @@ class ProductCategoryBlock extends StatelessWidget {
                 ? myController.editProductPageModel.value.categoryGroupValue
                 : myController.addProductModel.value.categoryGroupValue,
             onSelected: (value) {
-              myController.addChangeCategoryGroupValue(value!);
+              if (isEdit) {
+                myController.editChangeCategoryGroupValue(value!);
+              } else {
+                myController.addChangeCategoryGroupValue(value!);
+              }
             },
             enableFilter: true,
             inputDecorationTheme: InputDecorationTheme(

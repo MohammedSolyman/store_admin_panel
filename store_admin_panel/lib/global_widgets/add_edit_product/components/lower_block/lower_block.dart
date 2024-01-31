@@ -19,7 +19,7 @@ class LowerBlock extends StatelessWidget {
             visible: isEdit,
             child: MyButtonAsync(
               icon: Icons.delete,
-              txt: 'delete',
+              txt: 'delete product',
               contextFunc: myController.editDeleteFunc,
             )),
         const SizedBox(
@@ -27,7 +27,7 @@ class LowerBlock extends StatelessWidget {
         ),
         MyButtonAsync(
           icon: Icons.upload,
-          txt: isEdit ? 'edit' : 'upload',
+          txt: isEdit ? 'edit product' : 'add product',
           contextFunc:
               isEdit ? myController.askToEdit : myController.addUploadFunc,
         ),

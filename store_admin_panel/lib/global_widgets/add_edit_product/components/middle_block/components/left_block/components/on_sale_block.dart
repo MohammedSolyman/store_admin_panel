@@ -22,7 +22,11 @@ class OnSaleBlock extends StatelessWidget {
                   ? myController.editProductPageModel.value.isOnSaleBoxValue
                   : myController.addProductModel.value.isOnSaleBoxValue,
               onChanged: (bool? b) {
-                myController.addChangeIsOnSaleBoxValue(b!);
+                if (isEdit) {
+                  myController.editChangeIsOnSaleBoxValue(b!);
+                } else {
+                  myController.addChangeIsOnSaleBoxValue(b!);
+                }
               }),
           const MyText('on sale'),
         ],

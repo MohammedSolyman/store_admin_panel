@@ -23,7 +23,11 @@ class ProductMeasureUnit extends StatelessWidget {
                       ? myController.editProductPageModel.value.unitGroupValue
                       : myController.addProductModel.value.unitGroupValue,
                   onChanged: (String? s) {
-                    myController.addChangeGroupValue(s!);
+                    if (isEdit) {
+                      myController.editChangeGroupValue(s!);
+                    } else {
+                      myController.addChangeGroupValue(s!);
+                    }
                   }),
               const MyText('piece'),
               Radio(
@@ -32,7 +36,11 @@ class ProductMeasureUnit extends StatelessWidget {
                       ? myController.editProductPageModel.value.unitGroupValue
                       : myController.addProductModel.value.unitGroupValue,
                   onChanged: (String? s) {
-                    myController.addChangeGroupValue(s!);
+                    if (isEdit) {
+                      myController.editChangeGroupValue(s!);
+                    } else {
+                      myController.addChangeGroupValue(s!);
+                    }
                   }),
               const SizedBox(
                 height: 10,
