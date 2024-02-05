@@ -11,7 +11,7 @@ class AllPurchases extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       if (myController.dataModel.value.allPurchases.isEmpty) {
-        return const MyText('there is no orders');
+        return const MyText('there are no orders');
       } else {
         return PurchasesTemplate(
             dataList: myController.dataModel.value.allPurchases);

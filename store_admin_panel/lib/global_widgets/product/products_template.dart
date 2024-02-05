@@ -14,7 +14,7 @@ class ProductTemplates extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return dataList.isEmpty
-        ? const Text('there is no products')
+        ? const Text('there are no products')
         : GridView.builder(
             shrinkWrap: true,
             itemCount: dataList.length,

@@ -34,9 +34,9 @@ class Unit {
 }
 
 class Category {
-  static const String grains = "grains";
-  static const String fruits = "fruits";
-  static const String vegetables = "vegetables";
+  static const String grains = "Grains";
+  static const String fruits = "Fruits";
+  static const String vegetables = "Vegetables";
   static const String dairy = "Dairy";
   static const String beverages = "Beverages";
   static const String bakery = "Bakery";
@@ -50,19 +50,34 @@ class Category {
   static const String other = "Other";
 
   static const List<String> categoryList = [
-    Category.grains,
-    Category.fruits,
-    Category.vegetables,
-    Category.dairy,
-    Category.beverages,
+    // Category.bakery,
+    // Category.beverages,
+    // Category.cannedGoods,
+    // Category.cleaners,
+    // Category.dairy,
+    // Category.dryGoods,
+    // Category.frozen,
+    // Category.fruits,
+    // Category.grains,
+    // Category.meat,
+    // Category.other,
+    // Category.paperGoods,
+    // Category.personalCare,
+    // Category.vegetables,
+
     Category.bakery,
+    Category.beverages,
     Category.cannedGoods,
+    Category.cleaners,
+    Category.dairy,
     Category.dryGoods,
     Category.frozen,
+    Category.fruits,
+    Category.grains,
     Category.meat,
-    Category.cleaners,
     Category.paperGoods,
     Category.personalCare,
+    Category.vegetables,
     Category.other,
   ];
 }
